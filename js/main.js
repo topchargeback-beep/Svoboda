@@ -91,6 +91,78 @@
     });
   }
 
+  /* ---------- Видеоотзывы в кейсах ----------
+     Укажите ссылки на видеоотзывы (YouTube и т.п.) — кнопка
+     «Смотреть видеоотзыв» появится в карточке кейса автоматически.
+     Ключ = значение атрибута data-video в HTML. */
+
+  var VIDEO_LINKS = {
+    "ramil": "",          // Рамиль Шияпов / Сервер-сталь
+    "kst": "",            // СК КСТ
+    "sem-pokoleniy": "",  // Семь Поколений
+    "grata": "",          // СК Грата
+    "drugoe-delo": ""     // Патентное бюро «Другое дело»
+  };
+
+  document.querySelectorAll("[data-video]").forEach(function (el) {
+    var url = VIDEO_LINKS[el.getAttribute("data-video")];
+    if (url) {
+      el.setAttribute("href", url);
+      el.setAttribute("target", "_blank");
+      el.setAttribute("rel", "noopener");
+      el.hidden = false;
+    }
+  });
+
+  /* ---------- Плавное появление цифр кейсов ---------- */
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function animateMetric(el) {
+    var match = el.textContent.trim().match(/^×(\d+(?:,\d+)?)$/);
+    if (!match || reduceMotion) {
+      return;
+    }
+    var target = parseFloat(match[1].replace(",", "."));
+    var decimals = match[1].indexOf(",") !== -1 ? 1 : 0;
+    var duration = 1100;
+    var startTime = null;
+
+    function frame(now) {
+      if (startTime === null) {
+        startTime = now;
+      }
+      var progress = Math.min((now - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var value = 1 + (target - 1) * eased;
+      el.textContent = "×" + value.toFixed(decimals).replace(".", ",");
+      if (progress < 1) {
+        requestAnimationFrame(frame);
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  var metricEls = document.querySelectorAll(".metric-value");
+
+  if ("IntersectionObserver" in window && metricEls.length) {
+    var metricObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateMetric(entry.target);
+            metricObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    metricEls.forEach(function (el) {
+      metricObserver.observe(el);
+    });
+  }
+
   /* ============================================================
      Формы заявок.
 
