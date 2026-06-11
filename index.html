@@ -48,32 +48,20 @@
   <main>
 
     <!-- ======================= Первый экран ======================= -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="hero-inner">
-            <h1 class="hero-school">
-              <span class="hero-brand">СВОБОДА</span>
-              <span class="hero-tagline">Школа предпринимательства<br>для действующих предпринимателей</span>
-            </h1>
-            <p class="hero-text">Место, где предприниматели развивают навыки маркетинга, продаж, управления, найма и стратегии через работу над собственным бизнесом.</p>
-            <div class="btn-row">
-              <a class="btn btn--primary" href="razbor.html">Пройти разбор</a>
-              <a class="btn btn--ghost" href="#programs">Посмотреть программы</a>
-            </div>
-          </div>
-          <div class="hero-scene" aria-hidden="true">
-            <!-- Атмосфера школы. Добавьте реальные фото внутрь плиток: <img src="assets/scene-1.jpg" alt=""> -->
-            <figure class="scene-tile scene-tile--tall">
-              <figcaption>Стратегическая сессия</figcaption>
-            </figure>
-            <figure class="scene-tile">
-              <figcaption>Разбор предпринимателя</figcaption>
-            </figure>
-            <div class="scene-tile scene-tile--brand">
-              <span>Предпринимательство — это&nbsp;профессия</span>
-            </div>
-          </div>
+    <section class="hero hero--full">
+      <div class="hero-backdrop" aria-hidden="true">
+        <!-- Атмосферное фото (аудитория, сессия, флипчарт): загрузите assets/hero.jpg -->
+        <img src="assets/hero.jpg" alt="" data-optional>
+      </div>
+      <div class="container hero-content">
+        <h1 class="hero-school">
+          <span class="hero-brand">СВОБОДА</span>
+          <span class="hero-tagline">Школа предпринимательства<br>для действующих предпринимателей</span>
+        </h1>
+        <p class="hero-text">Место, где предприниматели развивают навыки маркетинга, продаж, управления, найма и стратегии через работу над собственным бизнесом.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="razbor.html">Пройти разбор</a>
+          <a class="btn btn--ghost-light" href="#programs">Посмотреть программы</a>
         </div>
       </div>
     </section>
@@ -81,13 +69,11 @@
     <!-- ======================= Что такое СВОБОДА ======================= -->
     <section class="section section--paper">
       <div class="container">
-        <div class="split">
+        <div class="split split--center">
           <div class="reveal">
             <span class="eyebrow">О школе</span>
             <h2 class="h2">Что такое СВОБОДА?</h2>
-          </div>
-          <div class="reveal">
-            <p class="lead" style="margin-bottom: 24px;">СВОБОДА — это школа предпринимательства для действующих предпринимателей.</p>
+            <p class="lead" style="margin: 20px 0 24px;">СВОБОДА — это школа предпринимательства для действующих предпринимателей.</p>
             <ul class="dash-list" style="margin-bottom: 24px;">
               <li>Мы не учим запускать бизнес.</li>
               <li>Мы не продаем мотивацию.</li>
@@ -95,6 +81,11 @@
             </ul>
             <p><strong>Мы помогаем предпринимателям развивать навыки через работу над собственным бизнесом.</strong></p>
           </div>
+          <figure class="photo-card photo-card--wide reveal">
+            <!-- Фото обучения: загрузите assets/about.jpg -->
+            <img src="assets/about.jpg" alt="Работа над бизнесом в школе СВОБОДА" loading="lazy" data-optional>
+            <figcaption>Работа над бизнесом</figcaption>
+          </figure>
         </div>
       </div>
       <div class="quote-band reveal">
@@ -105,25 +96,80 @@
       </div>
     </section>
 
-    <!-- ======================= Как выглядит школа ======================= -->
+    <!-- ======================= Как это работает ======================= -->
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Как выглядит школа</span>
+          <span class="eyebrow">Как это работает</span>
           <h2 class="h2">Путь предпринимателя в&nbsp;СВОБОДЕ</h2>
         </div>
-        <div class="path reveal">
-          <span class="path-step">Предприниматель приходит в школу</span>
-          <span class="path-arrow" aria-hidden="true">↓</span>
-          <span class="path-step">Развивает навыки</span>
-          <span class="path-arrow" aria-hidden="true">↓</span>
-          <span class="path-step">Внедряет инструменты в бизнес</span>
-          <span class="path-arrow" aria-hidden="true">↓</span>
-          <span class="path-step">Получает обратную связь</span>
-          <span class="path-arrow" aria-hidden="true">↓</span>
-          <span class="path-step">Получает новый результат</span>
-          <span class="path-arrow" aria-hidden="true">↓</span>
-          <span class="path-step path-step--accent">Переходит на следующий уровень</span>
+        <div class="flow reveal">
+          <div class="flow-step">
+            <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></span>
+            <span>Приходит<br>в школу</span>
+          </div>
+          <span class="flow-sep" aria-hidden="true">→</span>
+          <div class="flow-step">
+            <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span>
+            <span>Развивает<br>навык</span>
+          </div>
+          <span class="flow-sep" aria-hidden="true">→</span>
+          <div class="flow-step">
+            <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="12" width="16" height="9" rx="2"/><path d="M12 3v9"/><path d="M8 8l4 4 4-4"/></svg></span>
+            <span>Внедряет<br>в бизнес</span>
+          </div>
+          <span class="flow-sep" aria-hidden="true">→</span>
+          <div class="flow-step">
+            <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span>Получает<br>обратную связь</span>
+          </div>
+          <span class="flow-sep" aria-hidden="true">→</span>
+          <div class="flow-step">
+            <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg></span>
+            <span>Получает<br>результат</span>
+          </div>
+          <span class="flow-sep" aria-hidden="true">→</span>
+          <div class="flow-step flow-step--accent">
+            <span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><polyline points="9 7 17 7 17 15"/></svg></span>
+            <span>Переходит на<br>новый уровень</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= Кто учится в СВОБОДЕ ======================= -->
+    <section class="section section--paper">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Кто учится в СВОБОДЕ</span>
+          <h2 class="h2">Школа уже состоит из&nbsp;людей</h2>
+        </div>
+        <div class="photo-grid photo-grid--collage">
+          <!-- Загрузите фото: assets/gallery/who-1.jpg ... who-6.jpg -->
+          <figure class="photo-card reveal">
+            <img src="assets/gallery/who-1.jpg" alt="" loading="lazy" data-optional>
+            <figcaption>Групповая работа</figcaption>
+          </figure>
+          <figure class="photo-card reveal">
+            <img src="assets/gallery/who-2.jpg" alt="" loading="lazy" data-optional>
+            <figcaption>Обсуждение стратегии</figcaption>
+          </figure>
+          <figure class="photo-card reveal">
+            <img src="assets/gallery/who-3.jpg" alt="" loading="lazy" data-optional>
+            <figcaption>Разбор бизнеса</figcaption>
+          </figure>
+          <figure class="photo-card reveal">
+            <img src="assets/gallery/who-4.jpg" alt="" loading="lazy" data-optional>
+            <figcaption>Поток школы</figcaption>
+          </figure>
+          <figure class="photo-card reveal">
+            <img src="assets/gallery/who-5.jpg" alt="" loading="lazy" data-optional>
+            <figcaption>Индивидуальная работа</figcaption>
+          </figure>
+          <figure class="photo-card reveal">
+            <img src="assets/gallery/who-6.jpg" alt="" loading="lazy" data-optional>
+            <figcaption>Сообщество</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -132,11 +178,11 @@
     <section class="results-section">
       <div class="container">
         <span class="press-title reveal">Результаты предпринимателей</span>
-        <div class="results-wall">
+        <div class="results-wall results-wall--cards">
           <div class="result reveal">
             <span class="result-value">×13</span>
             <span class="result-label">Рост бизнеса</span>
-            <span class="result-name">Рамиль Шияпов</span>
+            <span class="result-name">Рамиль Шияпов · Сервер-сталь</span>
           </div>
           <div class="result reveal">
             <span class="result-value">×4,5</span>
@@ -152,6 +198,11 @@
             <span class="result-value">×3</span>
             <span class="result-label">Рост прибыли</span>
             <span class="result-name">СК КСТ</span>
+          </div>
+          <div class="result reveal">
+            <span class="result-value">×1,8</span>
+            <span class="result-label">Рост выручки</span>
+            <span class="result-name">«Другое Дело»</span>
           </div>
         </div>
       </div>
@@ -180,6 +231,7 @@
             <p>Мы учим врачей.<br>Мы учим инженеров.<br>Мы учим юристов.</p>
             <p>Но большинство предпринимателей до сих пор учатся через ошибки, выгорание и потерю денег.</p>
             <p>Именно поэтому я создаю СВОБОДУ.<br><strong>Школу предпринимательства для действующих предпринимателей.</strong></p>
+            <blockquote class="founder-quote">Я верю, что сильные бизнесы начинаются с сильных предпринимателей.</blockquote>
             <p class="letter-creds">13+ лет в предпринимательстве · выпускник СКОЛКОВО · Mini-MBA City Business School · приглашенный эксперт РБК, Коммерсант, Эксперт, АиФ</p>
             <div class="btn-row">
               <a class="btn btn--ghost btn--sm" href="#" rel="noopener" data-link="telegram">Telegram Инсара</a>
@@ -249,26 +301,38 @@
       </div>
     </section>
 
-    <!-- ======================= Школа вживую (фото) ======================= -->
+    <!-- ======================= Атмосфера школы (фотолента) ======================= -->
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Кто учится в СВОБОДЕ</span>
-          <h2 class="h2">Школа уже состоит из&nbsp;людей</h2>
+          <span class="eyebrow">Атмосфера школы</span>
+          <h2 class="h2">Выступления, разборы, сессии</h2>
         </div>
-        <div class="photo-grid">
-          <!-- Чтобы поставить живые фото, добавьте внутрь карточек: <img src="assets/photo-1.jpg" alt="..."> -->
+        <div class="photo-strip">
+          <!-- Загрузите фото: assets/gallery/mood-1.jpg ... mood-6.jpg -->
           <figure class="photo-card reveal">
-            <figcaption>Выступления</figcaption>
+            <img src="assets/gallery/mood-1.jpg" alt="" loading="lazy" data-optional>
+            <figcaption>Выступление</figcaption>
           </figure>
           <figure class="photo-card reveal">
-            <figcaption>Разборы предпринимателей</figcaption>
+            <img src="assets/gallery/mood-2.jpg" alt="" loading="lazy" data-optional>
+            <figcaption>Флипчарт</figcaption>
           </figure>
           <figure class="photo-card reveal">
-            <figcaption>Стратегические сессии</figcaption>
+            <img src="assets/gallery/mood-3.jpg" alt="" loading="lazy" data-optional>
+            <figcaption>Переговорная</figcaption>
           </figure>
           <figure class="photo-card reveal">
-            <figcaption>Сообщество школы</figcaption>
+            <img src="assets/gallery/mood-4.jpg" alt="" loading="lazy" data-optional>
+            <figcaption>Разбор</figcaption>
+          </figure>
+          <figure class="photo-card reveal">
+            <img src="assets/gallery/mood-5.jpg" alt="" loading="lazy" data-optional>
+            <figcaption>Библиотека</figcaption>
+          </figure>
+          <figure class="photo-card reveal">
+            <img src="assets/gallery/mood-6.jpg" alt="" loading="lazy" data-optional>
+            <figcaption>Кампус</figcaption>
           </figure>
         </div>
       </div>
