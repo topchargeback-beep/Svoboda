@@ -91,10 +91,14 @@
     });
   }
 
-  /* ---------- Видеоотзывы в кейсах ----------
-     Укажите ссылки на видеоотзывы (YouTube и т.п.) — кнопка
-     «Смотреть видеоотзыв» появится в карточке кейса автоматически.
-     Ключ = значение атрибута data-video в HTML. */
+  /* ---------- Видеоотзывы ----------
+     Вставьте ссылки на видеоотзывы с сайта Большеденег / YouTube.
+     Подходит любой формат: полная ссылка youtube.com/watch?v=...,
+     youtu.be/..., shorts или просто ID видео.
+
+     После заполнения:
+     - в блоке «Отзывы предпринимателей» появится встроенный плеер;
+     - в карточках кейсов появится кнопка «Смотреть видеоотзыв». */
 
   var VIDEO_LINKS = {
     "ramil": "",          // Рамиль Шияпов / Сервер-сталь
@@ -104,7 +108,19 @@
     "drugoe-delo": ""     // Патентное бюро «Другое дело»
   };
 
-  document.querySelectorAll("[data-video]").forEach(function (el) {
+  function youtubeId(url) {
+    if (!url) {
+      return null;
+    }
+    if (/^[\w-]{11}$/.test(url)) {
+      return url;
+    }
+    var match = url.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);
+    return match ? match[1] : null;
+  }
+
+  // Кнопки-ссылки «Смотреть видеоотзыв» в кейсах
+  document.querySelectorAll("a[data-video]").forEach(function (el) {
     var url = VIDEO_LINKS[el.getAttribute("data-video")];
     if (url) {
       el.setAttribute("href", url);
@@ -114,17 +130,48 @@
     }
   });
 
-  /* ---------- Плавное появление цифр кейсов ---------- */
+  // Встроенные плееры в блоке «Отзывы предпринимателей»
+  document.querySelectorAll(".video-slot[data-video]").forEach(function (slot) {
+    var url = VIDEO_LINKS[slot.getAttribute("data-video")];
+    var id = youtubeId(url);
+    if (id) {
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + id;
+      iframe.loading = "lazy";
+      iframe.title = "Видеоотзыв предпринимателя";
+      iframe.setAttribute(
+        "allow",
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      );
+      iframe.setAttribute("allowfullscreen", "");
+      slot.appendChild(iframe);
+      slot.hidden = false;
+    } else if (url) {
+      // Видео не на YouTube — показываем ссылкой
+      var link = document.createElement("a");
+      link.className = "case-video";
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = "Смотреть видеоотзыв";
+      slot.parentNode.insertBefore(link, slot);
+    }
+  });
+
+  /* ---------- Плавное появление цифр ---------- */
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function animateMetric(el) {
-    var match = el.textContent.trim().match(/^×(\d+(?:,\d+)?)$/);
+    var match = el.textContent.trim().match(/^(×?)(\d+(?:,\d+)?)(\+?)$/);
     if (!match || reduceMotion) {
       return;
     }
-    var target = parseFloat(match[1].replace(",", "."));
-    var decimals = match[1].indexOf(",") !== -1 ? 1 : 0;
+    var prefix = match[1];
+    var suffix = match[3];
+    var target = parseFloat(match[2].replace(",", "."));
+    var decimals = match[2].indexOf(",") !== -1 ? 1 : 0;
+    var from = prefix === "×" ? 1 : 0;
     var duration = 1100;
     var startTime = null;
 
@@ -134,8 +181,8 @@
       }
       var progress = Math.min((now - startTime) / duration, 1);
       var eased = 1 - Math.pow(1 - progress, 3);
-      var value = 1 + (target - 1) * eased;
-      el.textContent = "×" + value.toFixed(decimals).replace(".", ",");
+      var value = from + (target - from) * eased;
+      el.textContent = prefix + value.toFixed(decimals).replace(".", ",") + suffix;
       if (progress < 1) {
         requestAnimationFrame(frame);
       }

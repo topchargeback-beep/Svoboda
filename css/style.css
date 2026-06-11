@@ -1721,3 +1721,125 @@ form.is-hidden {
     animation: none;
   }
 }
+
+/* ============================================================
+   Результаты, видеоотзывы, ссылки на кейсы
+   ============================================================ */
+
+/* Полоса цифр «Результаты предпринимателей» */
+
+.stats-band {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(28px, 4vw, 56px);
+  border-top: 1px solid var(--color-line);
+  padding-top: clamp(36px, 5vw, 56px);
+}
+
+.stat-value {
+  display: block;
+  font-size: clamp(2.6rem, 4.6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--color-red);
+}
+
+.stat-label {
+  display: block;
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  max-width: 220px;
+}
+
+/* Карточки видеоотзывов */
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  padding: 32px 32px 36px;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--color-ink);
+}
+
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-quote {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-ink);
+  border-left: 3px solid var(--color-red);
+  padding-left: 20px;
+}
+
+.video-meta strong {
+  display: block;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.video-meta span {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* Ссылка «Подробнее о кейсе» */
+
+.case-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  border-bottom: 1.5px solid var(--color-red);
+  padding-bottom: 2px;
+  transition: color var(--transition);
+}
+
+.case-more::after {
+  content: "→";
+  color: var(--color-red);
+}
+
+.case-more:hover {
+  color: var(--color-red);
+}
+
+@media (max-width: 1024px) {
+  .stats-band {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .stats-band {
+    grid-template-columns: 1fr;
+  }
+}
