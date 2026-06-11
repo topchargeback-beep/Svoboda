@@ -191,7 +191,7 @@
     requestAnimationFrame(frame);
   }
 
-  var metricEls = document.querySelectorAll(".metric-value");
+  var metricEls = document.querySelectorAll(".metric-value, .result-value");
 
   if ("IntersectionObserver" in window && metricEls.length) {
     var metricObserver = new IntersectionObserver(
