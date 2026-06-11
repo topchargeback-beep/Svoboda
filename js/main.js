@@ -1,0 +1,200 @@
+/* ============================================================
+   СВОБОДА — Школа предпринимательства
+   Навигация, анимации появления, отправка форм.
+   ============================================================ */
+
+(function () {
+  "use strict";
+
+  /* ---------- Ссылки на соцсети ----------
+     Укажите реальные адреса — они подставятся во все кнопки
+     с атрибутами data-link="telegram" и data-link="youtube". */
+
+  var SOCIAL_LINKS = {
+    telegram: "", // например: "https://t.me/username"
+    youtube: ""   // например: "https://youtube.com/@channel"
+  };
+
+  document.querySelectorAll("[data-link]").forEach(function (el) {
+    var url = SOCIAL_LINKS[el.getAttribute("data-link")];
+    if (url) {
+      el.setAttribute("href", url);
+      el.setAttribute("target", "_blank");
+      el.setAttribute("rel", "noopener");
+    }
+  });
+
+  /* ---------- Шапка: тень при скролле ---------- */
+
+  var header = document.querySelector(".site-header");
+
+  function onScroll() {
+    header.classList.toggle("is-scrolled", window.scrollY > 8);
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Мобильное меню ---------- */
+
+  var navToggle = document.querySelector(".nav-toggle");
+  var nav = document.querySelector(".site-nav");
+
+  if (navToggle && nav) {
+    navToggle.addEventListener("click", function () {
+      var isOpen = nav.classList.toggle("is-open");
+      navToggle.classList.toggle("is-open", isOpen);
+      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    nav.addEventListener("click", function (e) {
+      if (e.target.tagName === "A") {
+        nav.classList.remove("is-open");
+        navToggle.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  /* ---------- Подсветка активного пункта меню ---------- */
+
+  var current = location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".site-nav a").forEach(function (link) {
+    var href = link.getAttribute("href");
+    if (href === current) {
+      link.classList.add("is-active");
+    }
+  });
+
+  /* ---------- Плавное появление блоков ---------- */
+
+  var revealEls = document.querySelectorAll(".reveal");
+
+  if ("IntersectionObserver" in window) {
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+    revealEls.forEach(function (el) {
+      observer.observe(el);
+    });
+  } else {
+    revealEls.forEach(function (el) {
+      el.classList.add("is-visible");
+    });
+  }
+
+  /* ============================================================
+     Формы заявок.
+
+     Интеграция пока не подключена — заявка логируется и
+     показывается экран успеха. Чтобы подключить отправку,
+     заполните FORM_CONFIG ниже. Поддерживаются два варианта:
+
+     1) Telegram-бот:
+        telegramBotToken — токен бота от @BotFather;
+        telegramChatId   — id чата или канала для заявок.
+
+     2) Произвольный webhook (CRM, email-сервис, n8n, Make и т.п.):
+        webhookUrl — заявка уйдёт POST-запросом в формате JSON.
+
+     Если заполнены оба, отправка идёт в оба канала.
+     ============================================================ */
+
+  var FORM_CONFIG = {
+    telegramBotToken: "", // например: "123456:ABC-DEF..."
+    telegramChatId: "",   // например: "-1001234567890"
+    webhookUrl: ""        // например: "https://example.com/api/lead"
+  };
+
+  function collectFormData(form) {
+    var data = {};
+    new FormData(form).forEach(function (value, key) {
+      data[key] = value;
+    });
+    data.page = location.href;
+    data.date = new Date().toISOString();
+    return data;
+  }
+
+  function sendToTelegram(data) {
+    var lines = ["Новая заявка с сайта СВОБОДА:", ""];
+    Object.keys(data).forEach(function (key) {
+      lines.push(key + ": " + data[key]);
+    });
+    return fetch(
+      "https://api.telegram.org/bot" + FORM_CONFIG.telegramBotToken + "/sendMessage",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: FORM_CONFIG.telegramChatId,
+          text: lines.join("\n")
+        })
+      }
+    );
+  }
+
+  function sendToWebhook(data) {
+    return fetch(FORM_CONFIG.webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+  }
+
+  function submitLead(data) {
+    var tasks = [];
+    if (FORM_CONFIG.telegramBotToken && FORM_CONFIG.telegramChatId) {
+      tasks.push(sendToTelegram(data));
+    }
+    if (FORM_CONFIG.webhookUrl) {
+      tasks.push(sendToWebhook(data));
+    }
+    if (tasks.length === 0) {
+      // Заглушка: интеграция не настроена, заявка попадает в консоль.
+      console.info("Заявка (интеграция не подключена):", data);
+      return Promise.resolve();
+    }
+    return Promise.all(tasks);
+  }
+
+  document.querySelectorAll("form[data-lead-form]").forEach(function (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var button = form.querySelector('button[type="submit"]');
+      var defaultLabel = button.textContent;
+      button.disabled = true;
+      button.textContent = "Отправляем…";
+
+      submitLead(collectFormData(form))
+        .then(function () {
+          var success = document.querySelector(
+            '.form-success[data-for="' + form.id + '"]'
+          );
+          if (success) {
+            form.classList.add("is-hidden");
+            success.classList.add("is-visible");
+          }
+          form.reset();
+        })
+        .catch(function () {
+          alert(
+            "Не получилось отправить заявку. Напишите нам в Telegram — ответим быстро."
+          );
+        })
+        .finally(function () {
+          button.disabled = false;
+          button.textContent = defaultLabel;
+        });
+    });
+  });
+})();
