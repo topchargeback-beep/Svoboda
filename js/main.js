@@ -91,6 +91,19 @@
     });
   }
 
+  /* ---------- Необязательные изображения ----------
+     Картинки с атрибутом data-optional скрываются, пока файл
+     не загружен в assets — вместо них виден фолбэк (инициалы). */
+
+  document.querySelectorAll("img[data-optional]").forEach(function (img) {
+    img.addEventListener("error", function () {
+      img.remove();
+    });
+    if (img.complete && img.naturalWidth === 0) {
+      img.remove();
+    }
+  });
+
   /* ---------- Видеоотзывы ----------
      Вставьте ссылки на видеоотзывы с сайта Большеденег / YouTube.
      Подходит любой формат: полная ссылка youtube.com/watch?v=...,
