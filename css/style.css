@@ -2070,3 +2070,62 @@ form.is-hidden {
     padding-top: 0;
   }
 }
+
+/* ============================================================
+   Подкасты
+   ============================================================ */
+
+.podcast-banner {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+  background: var(--color-ink);
+  color: #fff;
+  border-radius: 24px;
+  padding: clamp(40px, 6vw, 72px);
+}
+
+.podcast-banner .h2 {
+  margin-bottom: 18px;
+}
+
+.podcast-banner p {
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 520px;
+  margin-bottom: 32px;
+}
+
+.podcast-art {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  justify-self: center;
+}
+
+.podcast-disc {
+  width: clamp(160px, 18vw, 220px);
+  aspect-ratio: 1;
+  border-radius: 36px;
+  background: linear-gradient(160deg, #ff3517 0%, var(--color-red) 45%, #8f1000 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 24px 64px rgba(225, 25, 0, 0.35);
+}
+
+.podcast-art span {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 820px) {
+  .podcast-banner {
+    grid-template-columns: 1fr;
+  }
+  .podcast-art {
+    order: -1;
+  }
+}

@@ -101,11 +101,17 @@
      - в карточках кейсов появится кнопка «Смотреть видеоотзыв». */
 
   var VIDEO_LINKS = {
-    "ramil": "",          // Рамиль Шияпов / Сервер-сталь
-    "kst": "",            // СК КСТ
-    "sem-pokoleniy": "",  // Семь Поколений
-    "grata": "",          // СК Грата
-    "drugoe-delo": ""     // Патентное бюро «Другое дело»
+    "ramil": "https://kinescope.io/xn5nxG7fsFnEXniksaV3mo",        // Рамиль Шияпов / Сервер-сталь
+    "kst": "https://kinescope.io/iZ2kjooYEb83XsHJSptXtV",          // СК КСТ
+    "sem-pokoleniy": "",                                           // Семь Поколений
+    "grata": "https://kinescope.io/56YW1zVTn8mzDKfBM7entk",        // СК Грата
+    "drugoe-delo": "",                                             // Патентное бюро «Другое дело»
+    "katkov": "https://kinescope.io/gRvmt1jnxTAa1u8sLbMKZ3",       // Катков
+    "damir": "https://kinescope.io/hgYCHJd4UUsMYwD7V8zYZQ",        // Дамир
+    "gaptrahimov": "https://kinescope.io/9JoVpR73GnzDrKCPkR7dj3",  // Гаптрахимов
+    "upakovka": "https://kinescope.io/sxpNcanPKik839BJ2CXGH1",     // Упаковка (инструменты)
+    "aleksey": "https://kinescope.io/jWR5anw1e7ERdV7zuJB26a",      // Алексей
+    "aynur": "https://kinescope.io/e4g5LvNQQzpXmRXRd5S4Pp"         // Айнур
   };
 
   function youtubeId(url) {
@@ -117,6 +123,19 @@
     }
     var match = url.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);
     return match ? match[1] : null;
+  }
+
+  // Превращает ссылку (YouTube или Kinescope) в адрес для встраивания
+  function videoEmbedSrc(url) {
+    var yt = youtubeId(url);
+    if (yt) {
+      return "https://www.youtube-nocookie.com/embed/" + yt;
+    }
+    var kin = url && url.match(/kinescope\.io\/(?:embed\/)?([\w-]{10,})/);
+    if (kin) {
+      return "https://kinescope.io/embed/" + kin[1];
+    }
+    return null;
   }
 
   // Кнопки-ссылки «Смотреть видеоотзыв» в кейсах
@@ -133,21 +152,21 @@
   // Встроенные плееры в блоке «Отзывы предпринимателей»
   document.querySelectorAll(".video-slot[data-video]").forEach(function (slot) {
     var url = VIDEO_LINKS[slot.getAttribute("data-video")];
-    var id = youtubeId(url);
-    if (id) {
+    var src = videoEmbedSrc(url);
+    if (src) {
       var iframe = document.createElement("iframe");
-      iframe.src = "https://www.youtube-nocookie.com/embed/" + id;
+      iframe.src = src;
       iframe.loading = "lazy";
       iframe.title = "Видеоотзыв предпринимателя";
       iframe.setAttribute(
         "allow",
-        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
       );
       iframe.setAttribute("allowfullscreen", "");
       slot.appendChild(iframe);
       slot.hidden = false;
     } else if (url) {
-      // Видео не на YouTube — показываем ссылкой
+      // Сервис без поддержки встраивания — показываем ссылкой
       var link = document.createElement("a");
       link.className = "case-video";
       link.href = url;
