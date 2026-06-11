@@ -20,9 +20,15 @@
   <!-- ======================= Шапка ======================= -->
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html">
-        <span class="brand-name">СВОБОДА<span class="dot">.</span></span>
-        <span class="brand-sub">Школа предпринимательства</span>
+      <a class="brand" href="index.html" aria-label="СВОБОДА — школа предпринимательства">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="32"/>
+          <path d="M41 21.3A14 14 0 1 0 41 42.7" fill="none" stroke-width="9"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">СВОБОДА</span>
+          <span class="brand-sub">Школа предпринимательства</span>
+        </span>
       </a>
       <nav class="site-nav" aria-label="Основное меню">
         <a href="index.html">Главная</a>
@@ -44,13 +50,38 @@
     <!-- ======================= Первый экран ======================= -->
     <section class="hero">
       <div class="container">
-        <div class="hero-inner">
-          <h1 class="display">Предпринимательство — это&nbsp;профессия</h1>
-          <p class="lead">Мы развиваем навыки предпринимателя через работу над его собственным бизнесом.</p>
-          <p class="hero-text">Мы помогаем предпринимателям развивать навыки, которые напрямую влияют на рост бизнеса: маркетинг, продажи, финансы, найм, управление, делегирование и стратегию.</p>
-          <div class="btn-row">
-            <a class="btn btn--primary" href="razbor.html">Пройти разбор предпринимателя и бизнеса</a>
-            <a class="btn btn--ghost" href="#programs">Посмотреть программы</a>
+        <div class="hero-grid">
+          <div class="hero-inner">
+            <h1 class="display">Предпринимательство — это&nbsp;профессия</h1>
+            <p class="lead">Мы развиваем навыки предпринимателя через работу над его собственным бизнесом.</p>
+            <p class="hero-text">Маркетинг, продажи, финансы, найм, управление, делегирование и стратегия — навыки, которые напрямую влияют на рост бизнеса.</p>
+            <div class="btn-row">
+              <a class="btn btn--primary" href="razbor.html">Пройти разбор</a>
+              <a class="btn btn--ghost" href="#programs">Посмотреть программы</a>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="growth-chain">
+              <div class="growth-step">
+                <span class="growth-title">Предприниматель</span>
+                <span class="growth-sub">главная точка роста бизнеса</span>
+              </div>
+              <span class="growth-arrow">↓</span>
+              <div class="growth-step">
+                <span class="growth-title">Навыки</span>
+                <span class="growth-sub">маркетинг, продажи, финансы, управление</span>
+              </div>
+              <span class="growth-arrow">↓</span>
+              <div class="growth-step">
+                <span class="growth-title">Система</span>
+                <span class="growth-sub">бизнес работает без ручного управления</span>
+              </div>
+              <span class="growth-arrow">↓</span>
+              <div class="growth-step growth-step--accent">
+                <span class="growth-title">Свобода</span>
+                <span class="growth-sub">времени, денег и выбора</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -283,21 +314,42 @@
         </div>
         <div class="grid grid--3">
           <article class="program-card reveal">
+            <span class="program-tag">Коммерческая система</span>
             <h3 class="hash">#Большеденег</h3>
-            <p class="program-skills">Навыки маркетинга, продаж, прибыли и финансового контроля.</p>
-            <p class="program-for">Для предпринимателей, которым нужно больше клиентов, продаж, прибыли и управляемости в коммерческой системе.</p>
+            <div class="program-block">
+              <h4>Какие навыки развивает</h4>
+              <p>Маркетинг, продажи, прибыль и финансовый контроль предпринимателя.</p>
+            </div>
+            <div class="program-block">
+              <h4>Кому подходит</h4>
+              <p>Предпринимателям, которым нужно больше клиентов, продаж, прибыли и управляемости в коммерческой системе.</p>
+            </div>
             <a class="btn btn--ghost btn--sm" href="bolshedeneg.html">Подробнее</a>
           </article>
           <article class="program-card reveal">
+            <span class="program-tag">Управляемый бизнес</span>
             <h3 class="hash">#Большевремени</h3>
-            <p class="program-skills">Навыки управления, делегирования и выхода собственника из операционки.</p>
-            <p class="program-for">Для предпринимателей, у которых всё держится на них.</p>
+            <div class="program-block">
+              <h4>Какие навыки развивает</h4>
+              <p>Управление, делегирование и выход собственника из операционки.</p>
+            </div>
+            <div class="program-block">
+              <h4>Кому подходит</h4>
+              <p>Предпринимателям, у которых всё держится на них и кто хочет управляемый бизнес.</p>
+            </div>
             <a class="btn btn--ghost btn--sm" href="bolshevremeni.html">Подробнее</a>
           </article>
           <article class="program-card reveal">
+            <span class="program-tag">Энергия предпринимателя</span>
             <h3 class="hash">#Большеэнергии</h3>
-            <p class="program-skills">Навыки состояния, фокуса и устойчивости предпринимателя.</p>
-            <p class="program-for">Для предпринимателей, которые хотят расти без выгорания.</p>
+            <div class="program-block">
+              <h4>Какие навыки развивает</h4>
+              <p>Состояние, фокус и устойчивость предпринимателя.</p>
+            </div>
+            <div class="program-block">
+              <h4>Кому подходит</h4>
+              <p>Предпринимателям, которые хотят расти без выгорания.</p>
+            </div>
             <a class="btn btn--ghost btn--sm" href="bolsheenergii.html">Подробнее</a>
           </article>
         </div>
@@ -317,7 +369,10 @@
             <header>
               <h3 class="case-name">Рамиль Шияпов</h3>
             </header>
-            <p class="case-result">Рост ×3 за 3 месяца.<br>Рост ×13 за 2 года.</p>
+            <div class="case-metrics">
+              <div class="metric"><span class="metric-value">×3</span><span class="metric-label">за 3 месяца</span></div>
+              <div class="metric"><span class="metric-value">×13</span><span class="metric-label">за 2 года</span></div>
+            </div>
             <div class="case-block">
               <h4>Что внедрили</h4>
               <p>Фокус на прибыльном клиенте. Новое позиционирование. Система продаж.</p>
@@ -335,7 +390,10 @@
             <header>
               <h3 class="case-name">СК КСТ</h3>
             </header>
-            <p class="case-result">Рост прибыли ×3.<br>Средний чек ×1,8.</p>
+            <div class="case-metrics">
+              <div class="metric"><span class="metric-value">×3</span><span class="metric-label">рост прибыли</span></div>
+              <div class="metric"><span class="metric-value">×1,8</span><span class="metric-label">средний чек</span></div>
+            </div>
             <div class="case-block">
               <h4>Что внедрили</h4>
               <p>Сегментация. Позиционирование. Система маркетинга и продаж.</p>
@@ -353,7 +411,9 @@
             <header>
               <h3 class="case-name">Семь Поколений</h3>
             </header>
-            <p class="case-result">Рост продаж ×3.</p>
+            <div class="case-metrics">
+              <div class="metric"><span class="metric-value">×3</span><span class="metric-label">рост продаж</span></div>
+            </div>
             <div class="case-block">
               <h4>Что внедрили</h4>
               <p>Портрет клиента. Маркетинг. Скрипты. Найм менеджера.</p>
@@ -371,7 +431,9 @@
             <header>
               <h3 class="case-name">СК Грата</h3>
             </header>
-            <p class="case-result">Рост валовой прибыли ×4,5 за 4 месяца.</p>
+            <div class="case-metrics">
+              <div class="metric"><span class="metric-value">×4,5</span><span class="metric-label">валовая прибыль за 4 месяца</span></div>
+            </div>
             <div class="case-block">
               <h4>Что внедрили</h4>
               <p>Фокус на прибыльном сегменте. Обучение менеджеров. Система продаж.</p>
@@ -403,18 +465,21 @@
           <h2 class="h2">Кто создает школу</h2>
         </div>
         <div class="founder">
-          <div class="founder-photo reveal">
-            <span>Инсар Валиахметов</span>
-          </div>
+          <figure class="founder-photo reveal">
+            <!-- Чтобы поставить фото, добавьте сюда: <img src="assets/insar.jpg" alt="Инсар Валиахметов"> -->
+            <figcaption>
+              <strong>Инсар Валиахметов</strong>
+              <span>Основатель школы «СВОБОДА»</span>
+            </figcaption>
+          </figure>
           <div class="reveal">
-            <h3 class="h3">Инсар Валиахметов</h3>
+            <blockquote class="founder-quote">Предпринимательство — это профессия. И если мы хотим сильные бизнесы, нам нужны сильные предприниматели.</blockquote>
             <ul class="founder-creds dash-list">
               <li>Предприниматель 13+ лет</li>
               <li>Выпускник СКОЛКОВО</li>
               <li>Mini-MBA City Business School</li>
               <li>Приглашенный эксперт РБК, Коммерсант, Эксперт, АиФ</li>
             </ul>
-            <blockquote class="founder-quote">Предпринимательство — это профессия. И если мы хотим сильные бизнесы, нам нужны сильные предприниматели.</blockquote>
             <div class="btn-row">
               <a class="btn btn--ghost btn--sm" href="#" rel="noopener" data-link="telegram">Telegram Инсара</a>
               <a class="btn btn--ghost btn--sm" href="#" rel="noopener" data-link="youtube">YouTube Инсара</a>
@@ -431,7 +496,7 @@
           <h2 class="h2">Узнайте, какой навык сейчас ограничивает рост вашего бизнеса</h2>
           <p>Оставьте заявку на разбор предпринимателя и бизнеса. Мы посмотрим на вашу ситуацию и определим, что даст максимальный эффект в ближайшие 90 дней.</p>
           <div class="btn-row">
-            <a class="btn btn--primary" href="razbor.html">Оставить заявку</a>
+            <a class="btn btn--primary" href="razbor.html">Пройти разбор</a>
           </div>
         </div>
       </div>
@@ -444,7 +509,16 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <span class="brand-name">СВОБОДА<span class="dot">.</span></span>
+          <div class="brand">
+            <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="32" r="32"/>
+              <path d="M41 21.3A14 14 0 1 0 41 42.7" fill="none" stroke-width="9"/>
+            </svg>
+            <span class="brand-text">
+              <span class="brand-name">СВОБОДА</span>
+              <span class="brand-sub">Школа предпринимательства</span>
+            </span>
+          </div>
           <p>Школа предпринимательства для действующих предпринимателей. Предпринимательство — это профессия.</p>
         </div>
         <div class="footer-col">
