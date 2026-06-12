@@ -2470,9 +2470,9 @@ form.is-hidden {
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg,
-    rgba(10, 10, 10, 0.88) 0%,
-    rgba(10, 10, 10, 0.62) 48%,
-    rgba(10, 10, 10, 0.3) 100%);
+    rgba(10, 10, 10, 0.95) 0%,
+    rgba(10, 10, 10, 0.74) 48%,
+    rgba(10, 10, 10, 0.45) 100%);
 }
 
 .hero-content {
@@ -2809,5 +2809,155 @@ form.is-hidden {
   .photo-grid--collage .photo-card:nth-child(6) {
     grid-column: auto;
     aspect-ratio: 4 / 3;
+  }
+}
+
+/* ============================================================
+   V4: TED-тезис, знания ≠ навыки, лента отзывов, коллаж крупнее
+   ============================================================ */
+
+/* Тезис — эмоциональная пауза почти на весь экран */
+
+.thesis {
+  min-height: min(78vh, 720px);
+  display: flex;
+  align-items: center;
+  padding: clamp(96px, 14vw, 170px) 0;
+}
+
+.thesis-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.thesis-title {
+  font-size: clamp(2.3rem, 6vw, 4.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  text-transform: uppercase;
+}
+
+.thesis-sub {
+  margin-top: 32px;
+  color: var(--color-muted);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.75;
+}
+
+/* Знания ≠ навыки: три колонки */
+
+.section-head--center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.neq {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: clamp(24px, 5vw, 64px);
+  max-width: 860px;
+  margin: 0 auto clamp(48px, 7vw, 72px);
+}
+
+.neq-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.neq-emoji {
+  font-size: 2.6rem;
+  line-height: 1;
+}
+
+.neq-side strong {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  letter-spacing: -0.01em;
+}
+
+.neq-arrow {
+  color: var(--color-red);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.neq-note {
+  color: var(--color-muted);
+  font-size: 1rem;
+}
+
+.neq-sign {
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-weight: 800;
+  color: var(--color-red);
+  line-height: 1;
+}
+
+.formula--center {
+  justify-content: center;
+}
+
+/* Лента видеоотзывов */
+
+.video-reel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+.video-reel::-webkit-scrollbar {
+  height: 6px;
+}
+
+.video-reel::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 999px;
+}
+
+.video-reel .video-frame {
+  flex: 0 0 min(480px, 82vw);
+  scroll-snap-align: start;
+  border-radius: var(--radius);
+}
+
+.reel-hint {
+  margin-top: 16px;
+  font-size: 0.88rem;
+  color: var(--color-muted);
+}
+
+/* Коллаж: крупнее, без декоративных наслоений */
+
+.section--feature .container {
+  max-width: 1320px;
+}
+
+.photo-grid--collage {
+  gap: 20px;
+}
+
+.photo-grid--collage .photo-card::before,
+.photo-grid--collage .photo-card::after {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .neq {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .neq-sign {
+    justify-self: center;
   }
 }
