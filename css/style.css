@@ -2738,3 +2738,76 @@ form.is-hidden {
     aspect-ratio: 16 / 10;
   }
 }
+
+/* ============================================================
+   Финальный ритм: акцентные и спокойные блоки, коллаж, отзывы
+   ============================================================ */
+
+/* Иерархия блоков */
+
+.section--feature {
+  padding: clamp(88px, 12vw, 150px) 0;
+}
+
+.section--quiet {
+  padding: clamp(56px, 7vw, 88px) 0;
+}
+
+/* Коллаж «Так выглядит школа»: editorial-сетка */
+
+.photo-grid--collage {
+  gap: 18px;
+}
+
+.photo-grid--collage .photo-card:nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+.photo-grid--collage .photo-card:nth-child(6) {
+  grid-column: span 2;
+  aspect-ratio: auto;
+}
+
+/* Отзывы как доказательства: крупное видео + результат */
+
+.testimonials-grid .video-frame {
+  border-radius: var(--radius-sm);
+}
+
+.video-company {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.video-result {
+  display: block;
+  margin-top: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  color: var(--color-red);
+}
+
+@media (max-width: 1024px) {
+  .photo-grid--collage .photo-card:nth-child(1) {
+    grid-column: span 2;
+    grid-row: auto;
+    aspect-ratio: 16 / 9;
+  }
+  .photo-grid--collage .photo-card:nth-child(6) {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 560px) {
+  .photo-grid--collage .photo-card:nth-child(1),
+  .photo-grid--collage .photo-card:nth-child(6) {
+    grid-column: auto;
+    aspect-ratio: 4 / 3;
+  }
+}
