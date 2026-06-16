@@ -6,12 +6,14 @@
 
 :root {
   --color-bg: #ffffff;
-  --color-paper: #f7f7f5;
-  --color-ink: #0a0a0a;
+  --color-paper: #f4f4f4;
+  --color-ink: #070707;
+  --color-ink-2: #111111;
   --color-muted: #6b6b6b;
+  --color-muted-dark: #a7a7a7;
   --color-line: #e8e8e6;
-  --color-red: #e11900;
-  --color-red-dark: #c11500;
+  --color-red: #e10600;
+  --color-red-dark: #c00500;
 
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -3103,4 +3105,15 @@ form.is-hidden {
   .fit-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Hero: микро-строка навыков */
+
+.hero-skills {
+  margin-top: 18px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
 }
