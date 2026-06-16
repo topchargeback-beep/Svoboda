@@ -3381,3 +3381,105 @@ main .section-head--center::before {
     background: linear-gradient(0deg, var(--color-ink) 0%, transparent 50%);
   }
 }
+
+/* ============================================================
+   HERO headline по референсу: 3 строки, средняя — красная
+   ============================================================ */
+
+.hero-headline {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.04;
+}
+
+.hero-headline .hl-1 {
+  display: block;
+  font-size: clamp(2.2rem, 4.4vw, 4rem);
+  font-weight: 800;
+  color: #fff;
+}
+
+.hero-headline .hl-2 {
+  display: block;
+  font-size: clamp(1.8rem, 3.8vw, 3.4rem);
+  font-weight: 800;
+  color: var(--color-red);
+  margin-top: 4px;
+}
+
+.hero-headline .hl-3 {
+  display: block;
+  font-size: clamp(1.4rem, 2.8vw, 2.4rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  margin-top: 4px;
+}
+
+/* Факультеты: тёмные карточки с текстурным фоном (по референсу) */
+
+.program-card {
+  position: relative;
+  background: var(--color-ink-2);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  overflow: hidden;
+}
+
+.program-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(225, 6, 0, 0.22), transparent 45%),
+    radial-gradient(circle at 110% 120%, rgba(225, 6, 0, 0.14), transparent 50%);
+  pointer-events: none;
+}
+
+.program-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.program-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-red);
+  z-index: 2;
+}
+
+.program-card .hash {
+  color: var(--color-red);
+}
+
+.program-card .hash::first-letter {
+  color: var(--color-red);
+}
+
+.program-card .program-tag {
+  color: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.program-card .program-block h4 {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.program-card .program-block p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.program-card .btn--ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.program-card .btn--ghost:hover {
+  background: #fff;
+  color: var(--color-ink);
+  border-color: #fff;
+}
