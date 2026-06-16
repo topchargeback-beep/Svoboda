@@ -48,21 +48,23 @@
   <main>
 
     <!-- ======================= Первый экран ======================= -->
-    <section class="hero hero--full">
-      <div class="hero-backdrop" aria-hidden="true">
-        <img src="assets/hero.jpg" alt="Группа предпринимателей школы СВОБОДА за обсуждением">
-      </div>
-      <div class="container hero-content">
+    <section class="hero hero--split">
+      <div class="hero-split-text">
         <h1 class="hero-school">
           <span class="hero-brand">СВОБОДА</span>
           <span class="hero-tagline">Школа предпринимательства<br>для действующих предпринимателей</span>
         </h1>
         <p class="hero-text">Развиваем предпринимательские навыки через работу над собственным бизнесом.</p>
-        <p class="hero-skills">Маркетинг · Продажи · Управление · Найм · Стратегия · Финансы</p>
+        <div class="hero-pills" aria-hidden="true">
+          <span>Маркетинг</span><span>Продажи</span><span>Управление</span><span>Найм</span><span>Стратегия</span><span>Финансы</span>
+        </div>
         <div class="btn-row">
           <a class="btn btn--primary" href="razbor.html">Пройти разбор</a>
           <a class="btn btn--ghost-light" href="#programs">Посмотреть программы</a>
         </div>
+      </div>
+      <div class="hero-split-photo">
+        <img src="assets/hero.jpg" alt="Группа предпринимателей школы СВОБОДА за обсуждением">
       </div>
     </section>
 
@@ -71,8 +73,7 @@
       <div class="container">
         <div class="split split--center">
           <div class="reveal">
-            <span class="eyebrow">О школе</span>
-            <h2 class="h2">Что такое СВОБОДА?</h2>
+            <h2 class="h2">Что такое <span class="accent">СВОБОДА?</span></h2>
             <p class="lead" style="margin: 20px 0 24px;">СВОБОДА — это школа предпринимательства для действующих предпринимателей.</p>
             <ul class="dash-list" style="margin-bottom: 24px;">
               <li>Мы не учим запускать бизнес с нуля.</li>
