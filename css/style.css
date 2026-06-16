@@ -3581,3 +3581,75 @@ main .section-head--center::before {
     grid-template-columns: 1fr;
   }
 }
+
+/* ============================================================
+   Знания ≠ навыки — две колонки (переработка по ТЗ)
+   ============================================================ */
+
+.neq {
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+}
+
+.neq-col {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  border: 1px solid var(--color-line);
+}
+
+.neq-col--knowledge {
+  background: var(--color-paper);
+}
+
+.neq-col--skill {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+.neq-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 18px;
+}
+
+.neq-col--skill .neq-tag {
+  color: var(--color-red);
+}
+
+.neq-col ul {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.neq-col li {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.neq-col--skill li {
+  color: #fff;
+}
+
+.neq-foot {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-line);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.neq-col--skill .neq-foot {
+  border-top-color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.75);
+}
+
+@media (max-width: 700px) {
+  .neq-col { width: 100%; }
+}
