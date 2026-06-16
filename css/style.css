@@ -2985,13 +2985,13 @@ form.is-hidden {
 }
 
 .fit-card--yes {
-  background: #fff;
-}
-
-.fit-card--no {
   background: var(--color-ink);
   border-color: var(--color-ink);
   color: #fff;
+}
+
+.fit-card--no {
+  background: #fff;
 }
 
 .fit-card .h3 {
@@ -3024,11 +3024,11 @@ form.is-hidden {
 }
 
 .fit-list--no li {
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--color-ink);
 }
 
 .fit-list--no li::before {
-  background: rgba(255, 255, 255, 0.4);
+  background: #c9c9c7;
   -webkit-mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>') center / 60% no-repeat;
   mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>') center / 60% no-repeat;
 }
@@ -3249,3 +3249,33 @@ form.is-hidden {
     grid-template-columns: 1fr;
   }
 }
+
+/* ============================================================
+   Нумерация блоков (как в референсе): красные 01, 02, 03…
+   ============================================================ */
+
+main {
+  counter-reset: section;
+}
+
+main .section-head {
+  counter-increment: section;
+  position: relative;
+}
+
+main .section-head::before {
+  content: counter(section, decimal-leading-zero);
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-red);
+  margin-bottom: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+main .section-head--center::before {
+  text-align: center;
+}
+
+/* На темных секциях номер чуть ярче-контрастнее остаётся красным — ок */
