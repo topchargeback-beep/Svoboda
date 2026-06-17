@@ -3930,6 +3930,63 @@ main .section-head--center::before {
   border-color: #fff;
 }
 
+/* Бейджи и «следующие направления» */
+.program-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--color-red);
+  border-radius: 999px;
+  padding: 5px 13px;
+  margin-bottom: 18px;
+}
+
+.program-badge--soon {
+  color: rgba(255, 255, 255, 0.65);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.program-card--next {
+  background: #141414;
+}
+
+.program-card--next::before,
+.program-card--next::after {
+  display: none;
+}
+
+.program-card--next .hash,
+.program-card--next .hash::first-letter {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.program-note {
+  margin-top: 18px;
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.programs-subhead {
+  margin: clamp(40px, 5vw, 60px) 0 26px;
+}
+
+.programs-subhead h3 {
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.programs-subhead p {
+  color: var(--color-muted);
+  margin-top: 8px;
+  max-width: 680px;
+}
+
 /* ============================================================
    История школы — горизонтальный timeline 2023→2026
    ============================================================ */
