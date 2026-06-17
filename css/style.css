@@ -5,15 +5,19 @@
    ============================================================ */
 
 :root {
-  --color-bg: #ffffff;
-  --color-paper: #f4f4f4;
-  --color-ink: #070707;
-  --color-ink-2: #111111;
+  --color-bg: #fbf9f5;
+  --color-paper: #f2ede4;
+  --color-ink: #0e0e0e;
+  --color-ink-2: #161616;
   --color-muted: #6b6b6b;
   --color-muted-dark: #a7a7a7;
-  --color-line: #e8e8e6;
-  --color-red: #e10600;
-  --color-red-dark: #c00500;
+  --color-line: #e4ded3;
+  /* Основной акцент бренда #БольшеСвободы — бирюзово-зелёный */
+  --color-red: #0f766e;
+  --color-red-dark: #0a5f59;
+  --color-accent: #0f766e;
+  --color-accent-dark: #0a5f59;
+  --color-alert: #d92d20;
 
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -266,9 +270,10 @@ h4 {
 }
 
 .brand-name {
-  font-size: 1.2rem;
+  font-size: 1.12rem;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .brand-sub {
@@ -443,8 +448,8 @@ h4 {
 }
 
 .vs-card--svoboda {
-  background: rgba(225, 6, 0, 0.09);
-  border-color: rgba(225, 6, 0, 0.55);
+  background: rgba(15, 118, 110, 0.09);
+  border-color: rgba(15, 118, 110, 0.55);
 }
 
 .vs-card h3 {
@@ -463,7 +468,7 @@ h4 {
 }
 
 .vs-card--svoboda .vs-sub {
-  color: #ff6a5e;
+  color: #5fc9bf;
 }
 
 .vs-list {
@@ -3040,7 +3045,7 @@ form.is-hidden {
 }
 
 .results-wall--cards .result-value {
-  color: #ff3a1f;
+  color: #19a89b;
   font-size: clamp(2.3rem, 3.4vw, 3.2rem);
 }
 
@@ -3785,7 +3790,7 @@ main .section-head--center::before {
   letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.85);
   padding: 8px 16px;
-  border: 1px solid rgba(225, 6, 0, 0.5);
+  border: 1px solid rgba(15, 118, 110, 0.5);
   border-radius: 999px;
 }
 
@@ -3834,7 +3839,6 @@ main .section-head--center::before {
 
 .hero-headline {
   display: block;
-  text-transform: uppercase;
   letter-spacing: -0.01em;
   line-height: 1.04;
 }
@@ -3843,14 +3847,15 @@ main .section-head--center::before {
   display: block;
   font-size: clamp(2.2rem, 4.4vw, 4rem);
   font-weight: 800;
-  color: #fff;
+  color: var(--color-accent);
 }
 
 .hero-headline .hl-2 {
   display: block;
   font-size: clamp(1.8rem, 3.8vw, 3.4rem);
   font-weight: 800;
-  color: var(--color-red);
+  color: #fff;
+  text-transform: uppercase;
   margin-top: 4px;
 }
 
@@ -3859,6 +3864,7 @@ main .section-head--center::before {
   font-size: clamp(1.4rem, 2.8vw, 2.4rem);
   font-weight: 700;
   color: rgba(255, 255, 255, 0.92);
+  text-transform: uppercase;
   margin-top: 4px;
 }
 
@@ -3877,8 +3883,8 @@ main .section-head--center::before {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 85% 15%, rgba(225, 6, 0, 0.22), transparent 45%),
-    radial-gradient(circle at 110% 120%, rgba(225, 6, 0, 0.14), transparent 50%);
+    radial-gradient(circle at 85% 15%, rgba(15, 118, 110, 0.22), transparent 45%),
+    radial-gradient(circle at 110% 120%, rgba(15, 118, 110, 0.14), transparent 50%);
   pointer-events: none;
 }
 
