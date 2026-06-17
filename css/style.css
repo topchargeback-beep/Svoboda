@@ -511,6 +511,47 @@ h4 {
   color: rgba(255, 255, 255, 0.62);
 }
 
+/* Карточки инструментов «Что внедряем в бизнес» */
+.tools-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: clamp(26px, 3vw, 38px);
+}
+
+.tools-card .hash {
+  color: #fff;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.tools-card .hash::first-letter {
+  color: var(--color-red);
+}
+
+.tools-meaning {
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+.tools-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tools-tags span {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 6px 12px;
+}
+
 @media (max-width: 820px) {
   .vs-grid {
     grid-template-columns: 1fr;
