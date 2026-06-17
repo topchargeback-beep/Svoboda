@@ -398,6 +398,25 @@ h4 {
 }
 
 /* Сравнение подходов «От предпринимателей — предпринимателям» */
+.vs-body {
+  max-width: 760px;
+  margin: clamp(28px, 4vw, 44px) auto 0;
+  display: grid;
+  gap: 14px;
+  text-align: center;
+}
+
+.vs-body p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.vs-body strong {
+  color: #fff;
+  font-weight: 700;
+}
+
 .vs-thesis {
   text-align: center;
   font-size: clamp(1.5rem, 3vw, 2.1rem);
