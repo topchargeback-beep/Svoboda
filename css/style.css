@@ -930,6 +930,78 @@ h4 {
   color: var(--color-muted);
 }
 
+/* Карточки кейсов с фото сверху (главная) */
+.case-card--photo {
+  padding: 0;
+  overflow: hidden;
+  gap: 0;
+}
+
+.case-photo-top {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  background: var(--color-ink);
+  position: relative;
+}
+
+.case-photo-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.case-photo-top--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #161616, #2a2a2a);
+}
+
+.case-photo-top--placeholder span {
+  color: #fff;
+  font-weight: 800;
+  font-size: 2.6rem;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+.case-card--photo .case-body {
+  padding: 26px 28px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.case-card--photo .case-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.case-card--photo .case-metrics {
+  gap: 14px 28px;
+  padding: 16px 0;
+}
+
+.case-card--photo .metric-value {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+}
+
+.case-note {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-line);
+  padding-top: 14px;
+}
+
+.case-note strong {
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
 /* Развернутый кейс (страница «Кейсы») */
 
 .case-head {
@@ -3137,8 +3209,35 @@ form.is-hidden {
 
 .cta-split-text p {
   color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 32px;
+  margin-bottom: 18px;
   max-width: 460px;
+}
+
+.cta-list {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  max-width: 460px;
+}
+
+.cta-list li {
+  position: relative;
+  padding-left: 26px;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.4;
+}
+
+.cta-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-red);
 }
 
 .cta-split-photo {
