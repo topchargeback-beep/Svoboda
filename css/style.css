@@ -2695,32 +2695,59 @@ form.is-hidden {
 /* Результаты: премиальные тёмные карточки */
 
 .results-wall--cards {
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
 
 .results-wall--cards .result {
+  position: relative;
   background: var(--color-ink);
   border: none;
   border-radius: 18px;
-  padding: 32px 26px;
+  padding: 32px 30px 28px;
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+}
+
+.results-wall--cards .result::before {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--color-red);
+  margin-bottom: 22px;
 }
 
 .results-wall--cards .result-value {
   color: #ff3a1f;
+  font-size: clamp(2.3rem, 3.4vw, 3.2rem);
 }
 
 .results-wall--cards .result-label {
   color: #fff;
+  margin-top: 12px;
 }
 
 .results-wall--cards .result-name {
-  color: rgba(255, 255, 255, 0.55);
+  color: #fff;
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+.results-wall--cards .result-niche {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 @media (max-width: 1024px) {
   .results-wall--cards {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   .photo-strip {
     grid-template-columns: repeat(3, 1fr);
