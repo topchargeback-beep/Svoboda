@@ -1287,6 +1287,27 @@ h4 {
   font-size: clamp(2rem, 3vw, 2.6rem);
 }
 
+.case-keyskill {
+  border-left: 3px solid var(--color-red);
+  padding: 2px 0 2px 14px;
+}
+
+.case-keyskill .case-keyskill-label {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-red);
+  margin-bottom: 3px;
+}
+
+.case-keyskill p {
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1.35;
+}
+
 .case-note {
   font-size: 0.86rem;
   line-height: 1.5;
