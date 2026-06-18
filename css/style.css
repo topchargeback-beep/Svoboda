@@ -5,38 +5,43 @@
    ============================================================ */
 
 :root {
-  /* Бренд #БольшеСвободы: синий + белый + голубой + графит */
-  --color-navy: #0b3a6e;
-  --color-navy-soft: #0b2e54;
-  --color-blue: #0b3a6e;
-  --color-blue-dark: #071d35;
-  --color-sky: #5bb7e5;
-  --color-sky-light: #dceffb;
+  /* Бренд #БольшеСвободы — брендборд: синий + белый + голубой + графит */
+  --color-navy: #0b1d3a;
+  --color-navy-soft: #12294a;
+  --color-blue: #1d4ed8;
+  --color-blue-dark: #0b1d3a;
+  --color-sky: #63b9f6;
+  --color-sky-light: #cfe6fb;
+  --color-graphite: #33373d;
   --color-warm: #f2b84b;
 
   --color-bg: #ffffff;
-  --color-paper: #f3f8ff;
-  --color-ink: #071d35;
-  --color-ink-2: #0b2e54;
+  --color-paper: #e8eef5;
+  --color-ink: #0b1d3a;
+  --color-ink-2: #12294a;
   --color-muted: #6b7280;
   --color-muted-dark: #9fb0c6;
   --color-line: #dce7f5;
   /* акцент бренда — синий (легаси-имена указывают на синий) */
-  --color-red: #0b3a6e;
-  --color-red-dark: #071d35;
-  --color-accent: #0b3a6e;
-  --color-accent-dark: #071d35;
+  --color-red: #1d4ed8;
+  --color-red-dark: #0b1d3a;
+  --color-accent: #1d4ed8;
+  --color-accent-dark: #0b1d3a;
   --color-alert: #d92d20;
 
   --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  --container: 1160px;
+  --container: 1180px;
   --radius: 16px;
   --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
 
-  --shadow-card: 0 1px 2px rgba(10, 10, 10, 0.04), 0 8px 32px rgba(10, 10, 10, 0.06);
-  --shadow-card-hover: 0 2px 4px rgba(10, 10, 10, 0.05), 0 16px 48px rgba(10, 10, 10, 0.1);
+  --shadow-card: 0 14px 40px rgba(11, 29, 58, 0.06);
+  --shadow-card-hover: 0 24px 80px rgba(11, 29, 58, 0.1);
+  --shadow-soft: 0 24px 80px rgba(11, 29, 58, 0.08);
 
   --transition: 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
@@ -59,8 +64,8 @@ html {
 body {
   font-family: var(--font-sans);
   font-size: 17px;
-  line-height: 1.6;
-  color: var(--color-ink);
+  line-height: 1.65;
+  color: var(--color-graphite);
   background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -262,15 +267,8 @@ h4 {
   width: 40px;
   height: 40px;
   flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-blue);
-  color: #fff;
+  display: block;
   border-radius: 11px;
-  font-weight: 800;
-  font-size: 0.92rem;
-  letter-spacing: -0.02em;
 }
 
 .brand-text {
@@ -458,8 +456,8 @@ h4 {
 }
 
 .vs-card--svoboda {
-  background: rgba(11, 58, 110, 0.09);
-  border-color: rgba(11, 58, 110, 0.55);
+  background: rgba(29, 78, 216, 0.09);
+  border-color: rgba(29, 78, 216, 0.55);
 }
 
 .vs-card h3 {
@@ -478,7 +476,7 @@ h4 {
 }
 
 .vs-card--svoboda .vs-sub {
-  color: #9fd4ee;
+  color: #cfe6fb;
 }
 
 .vs-list {
@@ -1469,7 +1467,7 @@ h4 {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 70% 20%, rgba(11, 58, 110, 0.25), transparent 55%);
+  background: radial-gradient(circle at 70% 20%, rgba(29, 78, 216, 0.25), transparent 55%);
 }
 
 .founder-photo::after {
@@ -1636,8 +1634,7 @@ form.is-hidden {
 }
 
 .site-footer .brand-mark {
-  background: #fff;
-  color: var(--color-navy);
+  background: transparent;
 }
 
 .site-footer .brand-sub {
@@ -1948,9 +1945,9 @@ form.is-hidden {
 }
 
 @keyframes live-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(11, 58, 110, 0.55); }
-  70% { box-shadow: 0 0 0 9px rgba(11, 58, 110, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(11, 58, 110, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(29, 78, 216, 0.55); }
+  70% { box-shadow: 0 0 0 9px rgba(29, 78, 216, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(29, 78, 216, 0); }
 }
 
 .build-list {
@@ -2013,7 +2010,7 @@ form.is-hidden {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 15%, rgba(11, 58, 110, 0.18), transparent 55%);
+  background: radial-gradient(circle at 30% 15%, rgba(29, 78, 216, 0.18), transparent 55%);
 }
 
 .photo-card img {
@@ -2528,11 +2525,11 @@ form.is-hidden {
   width: clamp(160px, 18vw, 220px);
   aspect-ratio: 1;
   border-radius: 36px;
-  background: linear-gradient(160deg, #0b3a6e 0%, var(--color-red) 45%, #8f1000 100%);
+  background: linear-gradient(160deg, #1d4ed8 0%, var(--color-red) 45%, #8f1000 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 24px 64px rgba(11, 58, 110, 0.35);
+  box-shadow: 0 24px 64px rgba(29, 78, 216, 0.35);
 }
 
 .podcast-art span {
@@ -2613,7 +2610,7 @@ form.is-hidden {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 15%, rgba(11, 58, 110, 0.18), transparent 55%);
+  background: radial-gradient(circle at 30% 15%, rgba(29, 78, 216, 0.18), transparent 55%);
 }
 
 .scene-tile::after {
@@ -2873,7 +2870,7 @@ form.is-hidden {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 75% 30%, rgba(11, 58, 110, 0.16), transparent 55%),
+    radial-gradient(ellipse at 75% 30%, rgba(29, 78, 216, 0.16), transparent 55%),
     linear-gradient(160deg, #141414 0%, #1f1f1f 60%, #181818 100%);
 }
 
@@ -3498,8 +3495,8 @@ form.is-hidden {
 }
 
 .ladder-step--active {
-  background: rgba(11, 58, 110, 0.1);
-  border-color: rgba(11, 58, 110, 0.45);
+  background: rgba(29, 78, 216, 0.1);
+  border-color: rgba(29, 78, 216, 0.45);
 }
 
 .ladder-num {
@@ -3812,7 +3809,7 @@ main .section-head--center::before {
   letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.85);
   padding: 8px 16px;
-  border: 1px solid rgba(11, 58, 110, 0.5);
+  border: 1px solid rgba(29, 78, 216, 0.5);
   border-radius: 999px;
 }
 
@@ -3947,7 +3944,7 @@ main .section-head--center::before {
 }
 
 .program-card .btn--ghost:hover {
-  background: #f3f8ff;
+  background: #e8eef5;
   color: var(--color-blue-dark);
   border-color: var(--color-blue);
 }
@@ -4178,4 +4175,28 @@ main .section-head--center::before {
 
 @media (max-width: 700px) {
   .neq-col { width: 100%; }
+}
+
+/* Блок «Больше свободы предпринимателя» */
+.freedom-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: 34px 32px;
+  box-shadow: var(--shadow-card);
+}
+.freedom-card .freedom-num {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--color-blue);
+  margin-bottom: 12px;
+}
+.freedom-card .h3 {
+  margin-bottom: 10px;
+}
+.freedom-card p {
+  color: var(--color-graphite);
 }
