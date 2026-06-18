@@ -1,22 +1,31 @@
 /* ============================================================
-   СВОБОДА — Школа предпринимательства
-   Дизайн-система: минимализм, воздух, крупная типографика.
-   Белый фон, чёрный текст, красные акценты.
+   #БольшеСвободы — Школа предпринимательства
+   Дизайн-система: воздух, крупная типографика, светлые секции.
+   Палитра: синий + белый + голубой + графит/navy.
    ============================================================ */
 
 :root {
-  --color-bg: #fbf9f5;
-  --color-paper: #f2ede4;
-  --color-ink: #0e0e0e;
-  --color-ink-2: #161616;
-  --color-muted: #6b6b6b;
-  --color-muted-dark: #a7a7a7;
-  --color-line: #e4ded3;
-  /* Основной акцент бренда #БольшеСвободы — бирюзово-зелёный */
-  --color-red: #0f766e;
-  --color-red-dark: #0a5f59;
-  --color-accent: #0f766e;
-  --color-accent-dark: #0a5f59;
+  /* Бренд #БольшеСвободы: синий + белый + голубой + графит */
+  --color-navy: #0b1f3a;
+  --color-navy-soft: #102a43;
+  --color-blue: #2563eb;
+  --color-blue-dark: #1d4ed8;
+  --color-sky: #38bdf8;
+  --color-sky-light: #bae6fd;
+  --color-warm: #f59e0b;
+
+  --color-bg: #ffffff;
+  --color-paper: #f4f8ff;
+  --color-ink: #0b1f3a;
+  --color-ink-2: #102a43;
+  --color-muted: #6b7280;
+  --color-muted-dark: #a7b4c8;
+  --color-line: #dce7f5;
+  /* акцент бренда — синий (легаси-имена указывают на синий) */
+  --color-red: #2563eb;
+  --color-red-dark: #1d4ed8;
+  --color-accent: #2563eb;
+  --color-accent-dark: #1d4ed8;
   --color-alert: #d92d20;
 
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -448,8 +457,8 @@ h4 {
 }
 
 .vs-card--svoboda {
-  background: rgba(15, 118, 110, 0.09);
-  border-color: rgba(15, 118, 110, 0.55);
+  background: rgba(37, 99, 235, 0.09);
+  border-color: rgba(37, 99, 235, 0.55);
 }
 
 .vs-card h3 {
@@ -468,7 +477,7 @@ h4 {
 }
 
 .vs-card--svoboda .vs-sub {
-  color: #5fc9bf;
+  color: #7dd3fc;
 }
 
 .vs-list {
@@ -1293,23 +1302,24 @@ h4 {
 }
 
 .case-keyskill {
-  border-left: 3px solid var(--color-red);
-  padding: 2px 0 2px 14px;
+  background: var(--color-sky-light);
+  border-radius: 12px;
+  padding: 12px 15px;
 }
 
 .case-keyskill .case-keyskill-label {
   display: block;
   font-size: 0.74rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-red);
+  color: var(--color-blue-dark);
   margin-bottom: 3px;
 }
 
 .case-keyskill p {
   font-weight: 700;
-  color: var(--color-ink);
+  color: var(--color-navy);
   line-height: 1.35;
 }
 
@@ -1445,7 +1455,7 @@ h4 {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 70% 20%, rgba(225, 25, 0, 0.25), transparent 55%);
+  background: radial-gradient(circle at 70% 20%, rgba(37, 99, 235, 0.25), transparent 55%);
 }
 
 .founder-photo::after {
@@ -1927,9 +1937,9 @@ form.is-hidden {
 }
 
 @keyframes live-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(225, 25, 0, 0.55); }
-  70% { box-shadow: 0 0 0 9px rgba(225, 25, 0, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(225, 25, 0, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.55); }
+  70% { box-shadow: 0 0 0 9px rgba(37, 99, 235, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
 }
 
 .build-list {
@@ -1992,7 +2002,7 @@ form.is-hidden {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 15%, rgba(225, 25, 0, 0.18), transparent 55%);
+  background: radial-gradient(circle at 30% 15%, rgba(37, 99, 235, 0.18), transparent 55%);
 }
 
 .photo-card img {
@@ -2250,6 +2260,7 @@ form.is-hidden {
 
 .results-section {
   padding: clamp(48px, 7vw, 88px) 0;
+  background: var(--color-paper);
   border-top: 1px solid var(--color-line);
   border-bottom: 1px solid var(--color-line);
 }
@@ -2506,11 +2517,11 @@ form.is-hidden {
   width: clamp(160px, 18vw, 220px);
   aspect-ratio: 1;
   border-radius: 36px;
-  background: linear-gradient(160deg, #ff3517 0%, var(--color-red) 45%, #8f1000 100%);
+  background: linear-gradient(160deg, #2563eb 0%, var(--color-red) 45%, #8f1000 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 24px 64px rgba(225, 25, 0, 0.35);
+  box-shadow: 0 24px 64px rgba(37, 99, 235, 0.35);
 }
 
 .podcast-art span {
@@ -2591,7 +2602,7 @@ form.is-hidden {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 15%, rgba(225, 25, 0, 0.18), transparent 55%);
+  background: radial-gradient(circle at 30% 15%, rgba(37, 99, 235, 0.18), transparent 55%);
 }
 
 .scene-tile::after {
@@ -2851,7 +2862,7 @@ form.is-hidden {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 75% 30%, rgba(225, 25, 0, 0.16), transparent 55%),
+    radial-gradient(ellipse at 75% 30%, rgba(37, 99, 235, 0.16), transparent 55%),
     linear-gradient(160deg, #141414 0%, #1f1f1f 60%, #181818 100%);
 }
 
@@ -3025,9 +3036,9 @@ form.is-hidden {
 
 .results-wall--cards .result {
   position: relative;
-  background: var(--color-ink);
-  border: none;
-  border-radius: 18px;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
   padding: 32px 30px 28px;
   display: flex;
   flex-direction: column;
@@ -3040,22 +3051,22 @@ form.is-hidden {
   width: 34px;
   height: 3px;
   border-radius: 2px;
-  background: var(--color-red);
+  background: var(--color-blue);
   margin-bottom: 22px;
 }
 
 .results-wall--cards .result-value {
-  color: #19a89b;
+  color: var(--color-blue);
   font-size: clamp(2.3rem, 3.4vw, 3.2rem);
 }
 
 .results-wall--cards .result-label {
-  color: #fff;
+  color: var(--color-navy);
   margin-top: 12px;
 }
 
 .results-wall--cards .result-name {
-  color: #fff;
+  color: var(--color-navy);
   font-size: 0.98rem;
   font-weight: 600;
   margin-top: auto;
@@ -3066,7 +3077,7 @@ form.is-hidden {
   display: block;
   margin-top: 2px;
   font-size: 0.86rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-muted);
 }
 
 @media (max-width: 1024px) {
@@ -3476,8 +3487,8 @@ form.is-hidden {
 }
 
 .ladder-step--active {
-  background: rgba(225, 25, 0, 0.1);
-  border-color: rgba(225, 25, 0, 0.45);
+  background: rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.45);
 }
 
 .ladder-num {
@@ -3790,7 +3801,7 @@ main .section-head--center::before {
   letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.85);
   padding: 8px 16px;
-  border: 1px solid rgba(15, 118, 110, 0.5);
+  border: 1px solid rgba(37, 99, 235, 0.5);
   border-radius: 999px;
 }
 
@@ -3868,24 +3879,18 @@ main .section-head--center::before {
   margin-top: 4px;
 }
 
-/* Факультеты: тёмные карточки с текстурным фоном (по референсу) */
+/* Факультеты: светлые карточки в новой айдентике */
 
 .program-card {
   position: relative;
-  background: var(--color-ink-2);
-  border-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: #fff;
+  border-color: var(--color-line);
+  color: var(--color-ink);
   overflow: hidden;
 }
 
 .program-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 85% 15%, rgba(15, 118, 110, 0.22), transparent 45%),
-    radial-gradient(circle at 110% 120%, rgba(15, 118, 110, 0.14), transparent 50%);
-  pointer-events: none;
+  display: none;
 }
 
 .program-card > * {
@@ -3900,40 +3905,40 @@ main .section-head--center::before {
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--color-red);
+  background: var(--color-blue);
   z-index: 2;
 }
 
 .program-card .hash {
-  color: var(--color-red);
+  color: var(--color-blue);
 }
 
 .program-card .hash::first-letter {
-  color: var(--color-red);
+  color: var(--color-blue);
 }
 
 .program-card .program-tag {
-  color: rgba(255, 255, 255, 0.55);
-  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--color-muted);
+  border-color: var(--color-line);
 }
 
 .program-card .program-block h4 {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-muted);
 }
 
 .program-card .program-block p {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--color-ink);
 }
 
 .program-card .btn--ghost {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--color-blue);
+  border-color: var(--color-blue);
 }
 
 .program-card .btn--ghost:hover {
-  background: #fff;
-  color: var(--color-ink);
-  border-color: #fff;
+  background: #eff6ff;
+  color: var(--color-blue-dark);
+  border-color: var(--color-blue);
 }
 
 /* Бейджи и «следующие направления» */
@@ -3952,13 +3957,14 @@ main .section-head--center::before {
 }
 
 .program-badge--soon {
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--color-muted);
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--color-line);
 }
 
 .program-card--next {
-  background: #141414;
+  background: var(--color-paper);
+  border-color: var(--color-line);
 }
 
 .program-card--next::before,
@@ -3968,13 +3974,13 @@ main .section-head--center::before {
 
 .program-card--next .hash,
 .program-card--next .hash::first-letter {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-muted);
 }
 
 .program-note {
   margin-top: 18px;
   font-size: 0.86rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-muted);
 }
 
 .programs-subhead {
