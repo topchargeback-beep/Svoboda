@@ -349,3 +349,18 @@
     });
   });
 })();
+
+/* Табы «Какие навыки тренирует предприниматель» */
+(function () {
+  document.querySelectorAll("[data-tabs]").forEach(function (group) {
+    var btns = group.querySelectorAll(".tab-btn");
+    var panels = group.querySelectorAll(".tab-panel");
+    btns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var t = btn.getAttribute("data-tab");
+        btns.forEach(function (b) { b.classList.toggle("is-active", b === btn); });
+        panels.forEach(function (p) { p.classList.toggle("is-active", p.getAttribute("data-panel") === t); });
+      });
+    });
+  });
+})();
