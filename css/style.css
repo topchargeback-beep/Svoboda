@@ -6,29 +6,29 @@
 
 :root {
   /* Бренд #БольшеСвободы: синий + белый + голубой + графит */
-  --color-navy: #0b1f3a;
-  --color-navy-soft: #102a43;
-  --color-blue: #2563eb;
-  --color-blue-dark: #1d4ed8;
-  --color-sky: #38bdf8;
-  --color-sky-light: #bae6fd;
-  --color-warm: #f59e0b;
+  --color-navy: #0b3a6e;
+  --color-navy-soft: #0b2e54;
+  --color-blue: #0b3a6e;
+  --color-blue-dark: #071d35;
+  --color-sky: #5bb7e5;
+  --color-sky-light: #dceffb;
+  --color-warm: #f2b84b;
 
   --color-bg: #ffffff;
-  --color-paper: #f4f8ff;
-  --color-ink: #0b1f3a;
-  --color-ink-2: #102a43;
+  --color-paper: #f3f8ff;
+  --color-ink: #071d35;
+  --color-ink-2: #0b2e54;
   --color-muted: #6b7280;
-  --color-muted-dark: #a7b4c8;
+  --color-muted-dark: #9fb0c6;
   --color-line: #dce7f5;
   /* акцент бренда — синий (легаси-имена указывают на синий) */
-  --color-red: #2563eb;
-  --color-red-dark: #1d4ed8;
-  --color-accent: #2563eb;
-  --color-accent-dark: #1d4ed8;
+  --color-red: #0b3a6e;
+  --color-red-dark: #071d35;
+  --color-accent: #0b3a6e;
+  --color-accent-dark: #071d35;
   --color-alert: #d92d20;
 
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
 
   --container: 1160px;
@@ -262,14 +262,15 @@ h4 {
   width: 40px;
   height: 40px;
   flex-shrink: 0;
-}
-
-.brand-mark circle {
-  fill: var(--color-ink);
-}
-
-.brand-mark path {
-  stroke: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-blue);
+  color: #fff;
+  border-radius: 11px;
+  font-weight: 800;
+  font-size: 0.92rem;
+  letter-spacing: -0.02em;
 }
 
 .brand-text {
@@ -457,8 +458,8 @@ h4 {
 }
 
 .vs-card--svoboda {
-  background: rgba(37, 99, 235, 0.09);
-  border-color: rgba(37, 99, 235, 0.55);
+  background: rgba(11, 58, 110, 0.09);
+  border-color: rgba(11, 58, 110, 0.55);
 }
 
 .vs-card h3 {
@@ -477,7 +478,7 @@ h4 {
 }
 
 .vs-card--svoboda .vs-sub {
-  color: #7dd3fc;
+  color: #9fd4ee;
 }
 
 .vs-list {
@@ -899,16 +900,29 @@ h4 {
 .formula-step {
   padding: 14px 26px;
   border-radius: 999px;
-  border: 1.5px solid var(--color-ink);
+  border: 1.5px solid var(--color-line);
   font-weight: 600;
   font-size: clamp(0.95rem, 1.6vw, 1.1rem);
   background: #fff;
+  color: var(--color-ink);
 }
 
 .formula-step--accent {
-  background: var(--color-red);
-  border-color: var(--color-red);
+  background: var(--color-blue);
+  border-color: var(--color-blue);
   color: #fff;
+}
+
+/* Тёмные секции: пилюли формулы остаются читаемыми */
+.section--ink .formula-step {
+  color: var(--color-ink);
+  background: #fff;
+  border-color: #fff;
+}
+.section--ink .formula-step--accent {
+  background: var(--color-sky);
+  border-color: var(--color-sky);
+  color: var(--color-blue-dark);
 }
 
 .formula-arrow {
@@ -1455,7 +1469,7 @@ h4 {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 70% 20%, rgba(37, 99, 235, 0.25), transparent 55%);
+  background: radial-gradient(circle at 70% 20%, rgba(11, 58, 110, 0.25), transparent 55%);
 }
 
 .founder-photo::after {
@@ -1621,12 +1635,9 @@ form.is-hidden {
   margin-bottom: 56px;
 }
 
-.site-footer .brand-mark circle {
-  fill: #fff;
-}
-
-.site-footer .brand-mark path {
-  stroke: var(--color-ink);
+.site-footer .brand-mark {
+  background: #fff;
+  color: var(--color-navy);
 }
 
 .site-footer .brand-sub {
@@ -1937,9 +1948,9 @@ form.is-hidden {
 }
 
 @keyframes live-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.55); }
-  70% { box-shadow: 0 0 0 9px rgba(37, 99, 235, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(11, 58, 110, 0.55); }
+  70% { box-shadow: 0 0 0 9px rgba(11, 58, 110, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(11, 58, 110, 0); }
 }
 
 .build-list {
@@ -2002,7 +2013,7 @@ form.is-hidden {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 15%, rgba(37, 99, 235, 0.18), transparent 55%);
+  background: radial-gradient(circle at 30% 15%, rgba(11, 58, 110, 0.18), transparent 55%);
 }
 
 .photo-card img {
@@ -2517,11 +2528,11 @@ form.is-hidden {
   width: clamp(160px, 18vw, 220px);
   aspect-ratio: 1;
   border-radius: 36px;
-  background: linear-gradient(160deg, #2563eb 0%, var(--color-red) 45%, #8f1000 100%);
+  background: linear-gradient(160deg, #0b3a6e 0%, var(--color-red) 45%, #8f1000 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 24px 64px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 24px 64px rgba(11, 58, 110, 0.35);
 }
 
 .podcast-art span {
@@ -2602,7 +2613,7 @@ form.is-hidden {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 15%, rgba(37, 99, 235, 0.18), transparent 55%);
+  background: radial-gradient(circle at 30% 15%, rgba(11, 58, 110, 0.18), transparent 55%);
 }
 
 .scene-tile::after {
@@ -2862,7 +2873,7 @@ form.is-hidden {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 75% 30%, rgba(37, 99, 235, 0.16), transparent 55%),
+    radial-gradient(ellipse at 75% 30%, rgba(11, 58, 110, 0.16), transparent 55%),
     linear-gradient(160deg, #141414 0%, #1f1f1f 60%, #181818 100%);
 }
 
@@ -3487,8 +3498,8 @@ form.is-hidden {
 }
 
 .ladder-step--active {
-  background: rgba(37, 99, 235, 0.1);
-  border-color: rgba(37, 99, 235, 0.45);
+  background: rgba(11, 58, 110, 0.1);
+  border-color: rgba(11, 58, 110, 0.45);
 }
 
 .ladder-num {
@@ -3801,7 +3812,7 @@ main .section-head--center::before {
   letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.85);
   padding: 8px 16px;
-  border: 1px solid rgba(37, 99, 235, 0.5);
+  border: 1px solid rgba(11, 58, 110, 0.5);
   border-radius: 999px;
 }
 
@@ -3936,7 +3947,7 @@ main .section-head--center::before {
 }
 
 .program-card .btn--ghost:hover {
-  background: #eff6ff;
+  background: #f3f8ff;
   color: var(--color-blue-dark);
   border-color: var(--color-blue);
 }
