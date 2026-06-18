@@ -141,7 +141,22 @@ h4 {
 }
 
 .section {
-  padding: clamp(72px, 10vw, 128px) 0;
+  padding: clamp(56px, 7vw, 96px) 0;
+}
+
+.section--compact {
+  padding: clamp(40px, 5vw, 64px) 0;
+}
+
+.section--large {
+  padding: clamp(64px, 8vw, 112px) 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
 }
 
 .section--paper {
@@ -3758,7 +3773,7 @@ main .section-head--center::before {
 .hero--split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: min(92vh, 880px);
+  min-height: min(78vh, 720px);
   background: var(--color-ink);
   padding: 0;
 }
