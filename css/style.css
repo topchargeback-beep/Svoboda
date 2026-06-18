@@ -1688,6 +1688,22 @@ form.is-hidden {
   color: #fff;
 }
 
+.footer-next {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.95rem;
+  cursor: default;
+}
+
+.footer-next small {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.32);
+}
+
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   padding-top: 28px;
