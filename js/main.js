@@ -6,21 +6,44 @@
 (function () {
   "use strict";
 
-  /* ---------- Ссылки на соцсети ----------
-     Укажите реальные адреса — они подставятся во все кнопки
-     с атрибутами data-link="telegram" и data-link="youtube". */
+  /* ---------- Единая карта ссылок сайта ----------
+     Все соцсети и контакты в одном месте. Любой элемент с
+     атрибутом data-link="<ключ>" получит правильный href,
+     а внешние ссылки — target/rel/aria-label автоматически. */
 
-  var SOCIAL_LINKS = {
-    telegram: "", // например: "https://t.me/username"
-    youtube: ""   // например: "https://youtube.com/@channel"
+  var SITE_LINKS = {
+    telegram: "https://t.me/insarvv",
+    youtube: "https://youtube.com/@insarvv?si=BdbhREGSnbVIb4fU",
+    vk: "https://vk.com/bolshe__deneg",
+    instagram: "https://www.instagram.com/vvinsar?igsh=NjdnZmdyaWVhaTMz&utm_source=qr",
+    podcasts: "https://insarvv.mave.digital",
+    max: "https://max.ru/u/f9LHodD0cOLXlqqMMV2QEksQl3IrJzbLzjym4IakASSlugYFsClU-83fF_k",
+    email: "mailto:bolshedeneg1@mail.ru",
+    phone: "tel:+79673759955"
+  };
+
+  var LINK_LABELS = {
+    telegram: "Telegram-канал #БольшеСвободы",
+    youtube: "YouTube-канал #БольшеСвободы",
+    vk: "Сообщество ВКонтакте #БольшеСвободы",
+    instagram: "Instagram #БольшеСвободы",
+    podcasts: "Подкасты #БольшеСвободы",
+    max: "Написать в мессенджере MAX",
+    email: "Написать на почту",
+    phone: "Позвонить в школу"
   };
 
   document.querySelectorAll("[data-link]").forEach(function (el) {
-    var url = SOCIAL_LINKS[el.getAttribute("data-link")];
-    if (url) {
-      el.setAttribute("href", url);
+    var key = el.getAttribute("data-link");
+    var url = SITE_LINKS[key];
+    if (!url) return;
+    el.setAttribute("href", url);
+    if (/^https?:/.test(url)) {
       el.setAttribute("target", "_blank");
-      el.setAttribute("rel", "noopener");
+      el.setAttribute("rel", "noopener noreferrer");
+    }
+    if (!el.getAttribute("aria-label") && LINK_LABELS[key]) {
+      el.setAttribute("aria-label", LINK_LABELS[key]);
     }
   });
 
@@ -260,10 +283,20 @@
      ============================================================ */
 
   var FORM_CONFIG = {
-    telegramBotToken: "", // например: "123456:ABC-DEF..."
-    telegramChatId: "",   // например: "-1001234567890"
-    webhookUrl: ""        // например: "https://example.com/api/lead"
+    // TODO: вставить данные после выбора сервиса приёма заявок.
+    // Вариант 1 — Telegram-бот (токен @BotFather + id чата):
+    telegramBotToken: "",
+    telegramChatId: "",
+    // Вариант 2 — произвольный webhook (CRM, Formspree, Getform, n8n, Make):
+    webhookUrl: ""
   };
+
+  function isFormConfigured() {
+    return (
+      (FORM_CONFIG.telegramBotToken && FORM_CONFIG.telegramChatId) ||
+      !!FORM_CONFIG.webhookUrl
+    );
+  }
 
   function collectFormData(form) {
     var data = {};
@@ -273,6 +306,49 @@
     data.page = location.href;
     data.date = new Date().toISOString();
     return data;
+  }
+
+  /* Текст для мессенджера, когда обработчик ещё не подключён. */
+  function buildMessengerText(data) {
+    return (
+      "Здравствуйте! Хочу пройти входную диагностику предпринимателя и бизнеса в #БольшеСвободы.\n\n" +
+      "Меня зовут: " + (data["Имя"] || "") + "\n" +
+      "Бизнес / ниша: " + (data["Сфера бизнеса"] || data["Ниша"] || "") + "\n" +
+      "Что хочу разобрать: " + (data["Сообщение"] || data["Комментарий"] || data["Запрос"] || "") + "\n" +
+      "Удобный способ связи: " + (data["Телефон"] || data["Telegram"] || "")
+    );
+  }
+
+  var MSG_LINKS = {
+    telegram: "https://t.me/insarvv",
+    max: "https://max.ru/u/f9LHodD0cOLXlqqMMV2QEksQl3IrJzbLzjym4IakASSlugYFsClU-83fF_k"
+  };
+
+  /* Честный fallback: обработчик не подключён — не имитируем отправку,
+     а готовим текст и предлагаем отправить его в мессенджере. */
+  function showMessengerFallback(form, data) {
+    var panel = document.querySelector('.form-fallback[data-for="' + form.id + '"]');
+    if (!panel) {
+      panel = document.createElement("div");
+      panel.className = "form-fallback";
+      panel.setAttribute("data-for", form.id);
+      form.parentNode.insertBefore(panel, form.nextSibling);
+    }
+    var text = buildMessengerText(data);
+    panel.innerHTML =
+      '<h3 class="h3">Остался один шаг</h3>' +
+      '<p class="text-muted">Чтобы отправить заявку, напишите нам в мессенджере — мы уже подготовили текст. Откройте Telegram или MAX и отправьте сообщение.</p>' +
+      '<textarea class="form-fallback-text" readonly rows="6"></textarea>' +
+      '<div class="btn-row">' +
+      '<a class="btn btn--primary" target="_blank" rel="noopener noreferrer" href="' + MSG_LINKS.telegram + '">Открыть Telegram</a>' +
+      '<a class="btn btn--ghost" target="_blank" rel="noopener noreferrer" href="' + MSG_LINKS.max + '">Открыть MAX</a>' +
+      "</div>";
+    panel.querySelector(".form-fallback-text").value = text;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).catch(function () {});
+    }
+    form.classList.add("is-hidden");
+    panel.classList.add("is-visible");
   }
 
   function sendToTelegram(data) {
@@ -321,12 +397,27 @@
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
+      // Базовая валидация: имя и контакт обязательны.
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      var data = collectFormData(form);
+
+      // Обработчик не подключён — честный fallback через мессенджер,
+      // без имитации успешной отправки.
+      if (!isFormConfigured()) {
+        showMessengerFallback(form, data);
+        return;
+      }
+
       var button = form.querySelector('button[type="submit"]');
       var defaultLabel = button.textContent;
       button.disabled = true;
       button.textContent = "Отправляем…";
 
-      submitLead(collectFormData(form))
+      submitLead(data)
         .then(function () {
           var success = document.querySelector(
             '.form-success[data-for="' + form.id + '"]'
@@ -338,9 +429,7 @@
           form.reset();
         })
         .catch(function () {
-          alert(
-            "Не получилось отправить заявку. Напишите нам в Telegram — ответим быстро."
-          );
+          showMessengerFallback(form, data);
         })
         .finally(function () {
           button.disabled = false;
