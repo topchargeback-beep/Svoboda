@@ -4608,6 +4608,23 @@ main .section-head--center::before {
   .hero-collage { min-height: clamp(280px, 70vw, 420px); }
 }
 
+/* Атмосферный фон-фото под тёмными секциями (с сильным overlay) */
+.has-photo-bg {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  isolation: isolate;
+}
+.has-photo-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(11, 29, 58, 0.92), rgba(11, 29, 58, 0.82));
+}
+.has-photo-bg > .container { position: relative; z-index: 1; }
+
 /* Адаптив визуального слоя */
 @media (max-width: 920px) {
   .media-split, .media-split--reverse,
