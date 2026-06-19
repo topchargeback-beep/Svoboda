@@ -280,15 +280,22 @@
         webhookUrl — заявка уйдёт POST-запросом в формате JSON.
 
      Если заполнены оба, отправка идёт в оба канала.
+
+     ВАЖНО: пока endpoint не задан (поля ниже пустые) — НЕ показываем
+     фейковый «Заявка отправлена», а используем честный fallback на
+     Telegram / MAX (см. showMessengerFallback).
      ============================================================ */
 
+  // TODO: вставить endpoint формы после выбора сервиса приёма заявок.
+  // Пока пусто — работает fallback на Telegram / MAX, без имитации успеха.
+  var FORM_ENDPOINT = "";
+
   var FORM_CONFIG = {
-    // TODO: вставить данные после выбора сервиса приёма заявок.
     // Вариант 1 — Telegram-бот (токен @BotFather + id чата):
     telegramBotToken: "",
     telegramChatId: "",
     // Вариант 2 — произвольный webhook (CRM, Formspree, Getform, n8n, Make):
-    webhookUrl: ""
+    webhookUrl: FORM_ENDPOINT
   };
 
   function isFormConfigured() {

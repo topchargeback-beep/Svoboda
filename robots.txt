@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Укажите реальный домен после публикации сайта
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://topchargeback-beep.github.io/Svoboda/sitemap.xml
