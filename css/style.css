@@ -4261,3 +4261,249 @@ main .section-head--center::before {
 .skills-summary { margin-top: 22px; font-weight: 700; color: var(--color-navy); max-width: 760px; }
 @media (max-width: 720px){ .skill-rows { grid-template-columns: 1fr; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(8px);} to { opacity:1; transform:none; } }
+
+/* ============================================================
+   Живой визуальный слой — фото, коллажи, схемы
+   ============================================================ */
+
+/* Базовая визуальная карточка */
+.visual-card {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(11, 29, 58, 0.14);
+  background: var(--color-paper);
+}
+.visual-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 29, 58, 0.05), rgba(11, 29, 58, 0.55));
+  pointer-events: none;
+}
+.visual-overlay .visual-caption {
+  position: absolute;
+  left: clamp(16px, 3vw, 28px);
+  bottom: clamp(16px, 3vw, 24px);
+  right: clamp(16px, 3vw, 28px);
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.3;
+}
+
+/* Сплит «фото + смысл» */
+.media-split {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+}
+.media-split--reverse { grid-template-columns: 1fr 1.05fr; }
+.media-split--reverse .media-split__visual { order: 2; }
+.media-split__text .eyebrow { color: var(--color-blue); }
+.media-split__text p { color: var(--color-graphite); line-height: 1.65; margin-top: 14px; }
+.section--ink .media-split__text p { color: rgba(255,255,255,0.78); }
+.media-split__visual { aspect-ratio: 4 / 3.2; }
+
+/* §3.1 Коллаж практики: 1 крупное + 3 маленьких */
+.practice-collage {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  gap: clamp(12px, 1.6vw, 20px);
+  aspect-ratio: 16 / 8.5;
+}
+.practice-collage .visual-card:nth-child(1) { grid-row: 1 / 3; }
+.practice-collage .visual-card:nth-child(4) { grid-column: 2 / 4; }
+
+/* §3.2 Знание → навык: статичная карточка vs живая дорожка */
+.kp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: clamp(20px, 3vw, 36px);
+  margin-top: clamp(32px, 4vw, 48px);
+  align-items: stretch;
+}
+.kp-card {
+  border-radius: var(--radius-lg);
+  padding: clamp(24px, 3vw, 34px);
+}
+.kp-card h4 {
+  font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; margin-bottom: 18px;
+}
+.kp-card--theory {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.kp-card--theory h4 { color: var(--color-muted-dark); }
+.kp-stack { display: grid; gap: 10px; }
+.kp-stack span {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: rgba(255,255,255,0.72);
+  font-weight: 600;
+}
+.kp-card--practice {
+  background: linear-gradient(160deg, var(--color-blue), #1737a8);
+  border: 1px solid var(--color-blue);
+  box-shadow: 0 24px 60px rgba(29, 78, 216, 0.35);
+}
+.kp-card--practice h4 { color: rgba(255,255,255,0.85); }
+.kp-path { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.kp-path .kp-node {
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 999px;
+  padding: 11px 18px;
+  color: #fff; font-weight: 700;
+}
+.kp-path .kp-node--final { background: #fff; color: var(--color-blue); border-color: #fff; }
+.kp-path .kp-arrow { color: rgba(255,255,255,0.7); font-weight: 700; }
+.kp-card--practice .kp-note { margin-top: 22px; color: rgba(255,255,255,0.88); line-height: 1.6; }
+
+/* §3.3 Неделя в школе: фото + расписание */
+.week-plan {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(24px, 3vw, 44px);
+  align-items: center;
+  margin-top: clamp(36px, 5vw, 56px);
+}
+.week-plan__photo { aspect-ratio: 3 / 3.4; }
+.week-list { display: grid; gap: 12px; }
+.week-row {
+  display: grid;
+  grid-template-columns: 116px 1fr;
+  gap: 18px;
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-card);
+}
+.week-row .week-day {
+  font-size: 0.74rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--color-blue);
+}
+.week-row .week-act { color: var(--color-graphite); font-weight: 600; }
+.week-row--result {
+  background: var(--color-navy);
+  border-color: var(--color-navy);
+}
+.week-row--result .week-day { color: var(--color-sky); }
+.week-row--result .week-act { color: #fff; }
+
+/* §3.4 Диагностический дашборд (метафора, не интерфейс) */
+.diag-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(12px, 1.6vw, 18px);
+  margin-top: clamp(32px, 4vw, 44px);
+}
+.diag-tile {
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 22px 20px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+}
+.diag-tile .diag-step {
+  font-size: 0.72rem; font-weight: 800; color: var(--color-sky);
+  letter-spacing: 0.05em;
+}
+.diag-tile h4 { margin: 10px 0 8px; font-size: 1.02rem; color: var(--color-navy); }
+.diag-tile p { font-size: 0.9rem; color: var(--color-muted); line-height: 1.5; }
+.diag-tile--final { background: linear-gradient(160deg, var(--color-blue), #1737a8); border-color: var(--color-blue); }
+.diag-tile--final .diag-step { color: rgba(255,255,255,0.8); }
+.diag-tile--final h4, .diag-tile--final p { color: #fff; }
+
+/* §3.5 Визуальные мотивы программ */
+.program-card { position: relative; overflow: hidden; }
+.program-card .program-motif {
+  position: absolute;
+  top: -24px; right: -24px;
+  width: 150px; height: 150px;
+  opacity: 0.1;
+  color: var(--color-blue);
+  pointer-events: none;
+}
+.program-card .program-motif svg { width: 100%; height: 100%; }
+.program-card--next .program-motif { opacity: 0.07; color: var(--color-sky); }
+
+/* §3.6 Переход практика → результат */
+.proof-band {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  min-height: clamp(220px, 32vw, 320px);
+  display: flex;
+  align-items: flex-end;
+}
+.proof-band img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.proof-band .proof-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(11,29,58,0.82) 0%, rgba(11,29,58,0.55) 50%, rgba(11,29,58,0.25) 100%);
+}
+.proof-band .proof-text {
+  position: relative;
+  padding: clamp(28px, 4vw, 48px);
+  max-width: 640px;
+  color: #fff;
+}
+.proof-band .proof-text h2 { color: #fff; }
+.proof-band .proof-text p { color: rgba(255,255,255,0.85); margin-top: 12px; line-height: 1.6; }
+
+/* Hero-сплит на внутренних страницах: текст + визуал */
+.hero-inner--split {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+}
+.hero-inner--split .hero-text { margin-bottom: 0; }
+@media (max-width: 880px) {
+  .hero-inner--split { grid-template-columns: 1fr; }
+  .hero-inner--split .hero-visual { aspect-ratio: 16 / 9; }
+}
+
+/* Hero с визуалом на внутренних страницах */
+.hero-visual {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  aspect-ratio: 4 / 3.4;
+  box-shadow: 0 24px 80px rgba(11, 29, 58, 0.22);
+}
+.hero-visual img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Адаптив визуального слоя */
+@media (max-width: 920px) {
+  .media-split, .media-split--reverse,
+  .kp-grid, .week-plan { grid-template-columns: 1fr; }
+  .media-split--reverse .media-split__visual { order: 0; }
+  .media-split__visual, .week-plan__photo { aspect-ratio: 16 / 9; }
+  .diag-board { grid-template-columns: repeat(2, 1fr); }
+  .diag-tile--final { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .practice-collage { grid-template-columns: 1fr 1fr; grid-template-rows: auto; aspect-ratio: auto; }
+  .practice-collage .visual-card { aspect-ratio: 4 / 3; }
+  .practice-collage .visual-card:nth-child(1) { grid-row: auto; grid-column: 1 / 3; aspect-ratio: 16 / 9; }
+  .practice-collage .visual-card:nth-child(4) { grid-column: auto; }
+  .diag-board { grid-template-columns: 1fr; }
+  .week-row { grid-template-columns: 1fr; gap: 6px; }
+  .kp-path { font-size: 0.92rem; }
+}
