@@ -4466,28 +4466,147 @@ main .section-head--center::before {
 .proof-band .proof-text h2 { color: #fff; }
 .proof-band .proof-text p { color: rgba(255,255,255,0.85); margin-top: 12px; line-height: 1.6; }
 
-/* Hero-сплит на внутренних страницах: текст + визуал */
+/* Hero-сплит на внутренних страницах: текст + крупный визуал */
 .hero-inner--split {
+  max-width: none;
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: clamp(28px, 4vw, 56px);
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(32px, 4vw, 64px);
   align-items: center;
 }
+.hero-inner--split > div:first-child { max-width: 640px; }
 .hero-inner--split .hero-text { margin-bottom: 0; }
 @media (max-width: 880px) {
   .hero-inner--split { grid-template-columns: 1fr; }
-  .hero-inner--split .hero-visual { aspect-ratio: 16 / 9; }
+  .hero-inner--split > div:first-child { max-width: 640px; }
 }
 
-/* Hero с визуалом на внутренних страницах */
+/* Крупный визуал hero на внутренних страницах */
 .hero-visual {
   position: relative;
-  border-radius: var(--radius-xl);
+  border-radius: clamp(28px, 3vw, 36px);
   overflow: hidden;
-  aspect-ratio: 4 / 3.4;
-  box-shadow: 0 24px 80px rgba(11, 29, 58, 0.22);
+  min-height: clamp(360px, 36vw, 480px);
+  box-shadow: 0 30px 90px rgba(11, 29, 58, 0.28);
 }
-.hero-visual img { width: 100%; height: 100%; object-fit: cover; }
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 29, 58, 0.04), rgba(11, 29, 58, 0.42));
+  pointer-events: none;
+}
+.hero-visual img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+@media (max-width: 880px) {
+  .hero-visual { min-height: clamp(280px, 60vw, 380px); }
+}
+
+/* Универсальная visual-panel (ТЗ §18) */
+.visual-panel {
+  position: relative;
+  border-radius: 32px;
+  overflow: hidden;
+  min-height: 420px;
+}
+.visual-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 29, 58, 0.04), rgba(11, 29, 58, 0.42));
+  pointer-events: none;
+}
+
+/* Плавающие карточки-чипы поверх hero-визуала программ */
+.hero-visual--panel { display: block; }
+.hero-panel-chips {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: clamp(18px, 2.4vw, 26px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.hero-chip {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  border-radius: 14px;
+  padding: 12px 18px;
+  box-shadow: 0 12px 30px rgba(11, 29, 58, 0.2);
+  font-weight: 800;
+  color: var(--color-navy);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.hero-chip small { font-weight: 600; font-size: 0.72rem; color: var(--color-muted); }
+.hero-chip--accent { background: var(--color-blue); color: #fff; }
+.hero-chip--accent small { color: rgba(255, 255, 255, 0.85); }
+.hero-chip--next { background: rgba(255, 255, 255, 0.82); color: var(--color-navy); }
+.hero-chip--next small { color: var(--color-blue); }
+
+/* Фотополоса (равная высота, единое кадрирование) */
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(10px, 1.4vw, 16px);
+}
+.photo-strip .visual-card { aspect-ratio: 3 / 4; }
+@media (max-width: 900px) {
+  .photo-strip { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 520px) {
+  .photo-strip { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Карточки «инструмент → навык» (тренажёры) */
+.trainer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  margin-top: clamp(28px, 4vw, 44px);
+}
+.trainer-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  padding: clamp(22px, 2.6vw, 30px);
+}
+.trainer-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: rgba(99, 185, 246, 0.16);
+  color: var(--color-sky);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.trainer-icon svg { width: 28px; height: 28px; }
+.trainer-card .trainer-tool { font-size: 1.15rem; font-weight: 800; color: #fff; }
+.trainer-card .trainer-arrow { color: var(--color-sky); font-weight: 700; margin: 6px 0; display: block; }
+.trainer-card .trainer-skill { color: rgba(255, 255, 255, 0.78); line-height: 1.55; }
+@media (max-width: 760px) { .trainer-grid { grid-template-columns: 1fr; } }
+
+/* Hero-коллаж медиа (2×2, крупное + три) */
+.hero-collage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: clamp(10px, 1.4vw, 16px);
+  min-height: clamp(360px, 36vw, 480px);
+}
+.hero-collage .visual-card { min-height: 0; }
+.hero-collage .visual-card:nth-child(1) { grid-row: 1 / 3; }
+.hero-collage .visual-card .vc-tag {
+  position: absolute; left: 14px; bottom: 14px; z-index: 2;
+  background: rgba(11, 29, 58, 0.78); color: #fff;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+  padding: 6px 12px; border-radius: 999px;
+}
+@media (max-width: 880px) {
+  .hero-collage { min-height: clamp(280px, 70vw, 420px); }
+}
 
 /* Адаптив визуального слоя */
 @media (max-width: 920px) {
