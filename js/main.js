@@ -180,7 +180,7 @@
     if (url) {
       el.setAttribute("href", url);
       el.setAttribute("target", "_blank");
-      el.setAttribute("rel", "noopener");
+      el.setAttribute("rel", "noopener noreferrer");
       el.hidden = false;
     }
   });
@@ -207,7 +207,7 @@
       link.className = "case-video";
       link.href = url;
       link.target = "_blank";
-      link.rel = "noopener";
+      link.rel = "noopener noreferrer";
       link.textContent = "Смотреть видеоотзыв";
       slot.parentNode.insertBefore(link, slot);
     }
@@ -268,72 +268,62 @@
   /* ============================================================
      Формы заявок.
 
-     Интеграция пока не подключена — заявка логируется и
-     показывается экран успеха. Чтобы подключить отправку,
-     заполните FORM_CONFIG ниже. Поддерживаются два варианта:
+     Сайт статический (GitHub Pages, без бэкенда), поэтому заявки
+     отправляются на внешний form-endpoint (Formspree / Getform /
+     Yandex Forms / любой webhook), который пересылает их на e-mail
+     bolshedeneg1@mail.ru.
 
-     1) Telegram-бот:
-        telegramBotToken — токен бота от @BotFather;
-        telegramChatId   — id чата или канала для заявок.
+     Подключение: вставьте URL сервиса в FORM_ENDPOINT ниже.
+     Пока он пустой — НЕ показываем фейковый «Заявка отправлена»,
+     а честно ведём пользователя в Telegram / MAX / e-mail.
 
-     2) Произвольный webhook (CRM, email-сервис, n8n, Make и т.п.):
-        webhookUrl — заявка уйдёт POST-запросом в формате JSON.
-
-     Если заполнены оба, отправка идёт в оба канала.
-
-     ВАЖНО: пока endpoint не задан (поля ниже пустые) — НЕ показываем
-     фейковый «Заявка отправлена», а используем честный fallback на
-     Telegram / MAX (см. showMessengerFallback).
+     Telegram-бот напрямую из фронтенда НЕ используется: токен в
+     публичном коде виден всем. Для Telegram нужен serverless-бэкенд
+     (Cloudflare/Vercel/Netlify/Apps Script), а его URL ставится
+     в тот же FORM_ENDPOINT.
      ============================================================ */
 
-  // TODO: вставить endpoint формы после выбора сервиса приёма заявок.
-  // Пока пусто — работает fallback на Telegram / MAX, без имитации успеха.
+  // TODO: вставить endpoint формы после выбора сервиса приёма заявок
+  // (например, Formspree: "https://formspree.io/f/xxxxxxx").
+  // Пока пусто — работает честный fallback на Telegram / MAX / e-mail.
   var FORM_ENDPOINT = "";
 
-  var FORM_CONFIG = {
-    // Вариант 1 — Telegram-бот (токен @BotFather + id чата):
-    telegramBotToken: "",
-    telegramChatId: "",
-    // Вариант 2 — произвольный webhook (CRM, Formspree, Getform, n8n, Make):
-    webhookUrl: FORM_ENDPOINT
+  var CONTACTS = {
+    telegram: "https://t.me/insarvv",
+    max: "https://max.ru/u/f9LHodD0cOLXlqqMMV2QEksQl3IrJzbLzjym4IakASSlugYFsClU-83fF_k",
+    email: "mailto:bolshedeneg1@mail.ru"
   };
 
-  function isFormConfigured() {
-    return (
-      (FORM_CONFIG.telegramBotToken && FORM_CONFIG.telegramChatId) ||
-      !!FORM_CONFIG.webhookUrl
-    );
+  function fieldVal(form, names) {
+    for (var i = 0; i < names.length; i++) {
+      var el = form.querySelector('[name="' + names[i] + '"]');
+      if (el && el.value.trim()) return el.value.trim();
+    }
+    return "";
   }
 
-  function collectFormData(form) {
-    var data = {};
-    new FormData(form).forEach(function (value, key) {
-      data[key] = value;
-    });
-    data.page = location.href;
-    data.date = new Date().toISOString();
-    return data;
-  }
-
-  /* Текст для мессенджера, когда обработчик ещё не подключён. */
-  function buildMessengerText(data) {
+  /* Текст заявки для мессенджера / письма. */
+  function buildLeadText(form) {
     return (
       "Здравствуйте! Хочу пройти входную диагностику предпринимателя и бизнеса в #БольшеСвободы.\n\n" +
-      "Меня зовут: " + (data["Имя"] || "") + "\n" +
-      "Бизнес / ниша: " + (data["Сфера бизнеса"] || data["Ниша"] || "") + "\n" +
-      "Что хочу разобрать: " + (data["Сообщение"] || data["Комментарий"] || data["Запрос"] || "") + "\n" +
-      "Удобный способ связи: " + (data["Телефон"] || data["Telegram"] || "")
+      "Имя: " + fieldVal(form, ["Имя", "name"]) + "\n" +
+      "Телефон: " + fieldVal(form, ["Телефон", "phone"]) + "\n" +
+      "Telegram / мессенджер: " + fieldVal(form, ["Telegram", "telegram"]) + "\n" +
+      "Бизнес / ниша: " + fieldVal(form, ["Сфера бизнеса", "Ниша", "business"]) + "\n" +
+      "Что хочу разобрать: " + fieldVal(form, ["Главная проблема", "Сообщение", "Запрос", "message"])
     );
   }
 
-  var MSG_LINKS = {
-    telegram: "https://t.me/insarvv",
-    max: "https://max.ru/u/f9LHodD0cOLXlqqMMV2QEksQl3IrJzbLzjym4IakASSlugYFsClU-83fF_k"
-  };
+  function showSuccess(form) {
+    var success = document.querySelector('.form-success[data-for="' + form.id + '"]');
+    if (success) {
+      form.classList.add("is-hidden");
+      success.classList.add("is-visible");
+    }
+  }
 
-  /* Честный fallback: обработчик не подключён — не имитируем отправку,
-     а готовим текст и предлагаем отправить его в мессенджере. */
-  function showMessengerFallback(form, data) {
+  /* Честный fallback: endpoint не подключён или отправка не прошла. */
+  function showFallback(form) {
     var panel = document.querySelector('.form-fallback[data-for="' + form.id + '"]');
     if (!panel) {
       panel = document.createElement("div");
@@ -341,14 +331,15 @@
       panel.setAttribute("data-for", form.id);
       form.parentNode.insertBefore(panel, form.nextSibling);
     }
-    var text = buildMessengerText(data);
+    var text = buildLeadText(form);
     panel.innerHTML =
-      '<h3 class="h3">Остался один шаг</h3>' +
-      '<p class="text-muted">Чтобы отправить заявку, напишите нам в мессенджере — мы уже подготовили текст. Откройте Telegram или MAX и отправьте сообщение.</p>' +
+      '<h3 class="h3">Напишите нам напрямую</h3>' +
+      '<p class="text-muted">Сейчас форма не отправляет заявку автоматически. Напишите нам в Telegram, MAX или на e-mail — мы запишем вас на диагностику. Текст заявки уже готов (скопирован):</p>' +
       '<textarea class="form-fallback-text" readonly rows="6"></textarea>' +
       '<div class="btn-row">' +
-      '<a class="btn btn--primary" target="_blank" rel="noopener noreferrer" href="' + MSG_LINKS.telegram + '">Открыть Telegram</a>' +
-      '<a class="btn btn--ghost" target="_blank" rel="noopener noreferrer" href="' + MSG_LINKS.max + '">Открыть MAX</a>' +
+      '<a class="btn btn--primary" target="_blank" rel="noopener noreferrer" href="' + CONTACTS.telegram + '">Написать в Telegram</a>' +
+      '<a class="btn btn--ghost" target="_blank" rel="noopener noreferrer" href="' + CONTACTS.max + '">Написать в MAX</a>' +
+      '<a class="btn btn--ghost" href="' + CONTACTS.email + '">Написать на email</a>' +
       "</div>";
     panel.querySelector(".form-fallback-text").value = text;
     if (navigator.clipboard) {
@@ -358,64 +349,19 @@
     panel.classList.add("is-visible");
   }
 
-  function sendToTelegram(data) {
-    var lines = ["Новая заявка с сайта #БольшеСвободы:", ""];
-    Object.keys(data).forEach(function (key) {
-      lines.push(key + ": " + data[key]);
-    });
-    return fetch(
-      "https://api.telegram.org/bot" + FORM_CONFIG.telegramBotToken + "/sendMessage",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: FORM_CONFIG.telegramChatId,
-          text: lines.join("\n")
-        })
-      }
-    );
-  }
-
-  function sendToWebhook(data) {
-    return fetch(FORM_CONFIG.webhookUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
-  }
-
-  function submitLead(data) {
-    var tasks = [];
-    if (FORM_CONFIG.telegramBotToken && FORM_CONFIG.telegramChatId) {
-      tasks.push(sendToTelegram(data));
-    }
-    if (FORM_CONFIG.webhookUrl) {
-      tasks.push(sendToWebhook(data));
-    }
-    if (tasks.length === 0) {
-      // Заглушка: интеграция не настроена, заявка попадает в консоль.
-      console.info("Заявка (интеграция не подключена):", data);
-      return Promise.resolve();
-    }
-    return Promise.all(tasks);
-  }
-
   document.querySelectorAll("form[data-lead-form]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      // Базовая валидация: имя и контакт обязательны.
+      // Валидация: имя, контакт и согласие обязательны (required в разметке).
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
 
-      var data = collectFormData(form);
-
-      // Обработчик не подключён — честный fallback через мессенджер,
-      // без имитации успешной отправки.
-      if (!isFormConfigured()) {
-        showMessengerFallback(form, data);
+      // Endpoint не задан — честный fallback, без имитации отправки.
+      if (!FORM_ENDPOINT) {
+        showFallback(form);
         return;
       }
 
@@ -424,19 +370,24 @@
       button.disabled = true;
       button.textContent = "Отправляем…";
 
-      submitLead(data)
-        .then(function () {
-          var success = document.querySelector(
-            '.form-success[data-for="' + form.id + '"]'
-          );
-          if (success) {
-            form.classList.add("is-hidden");
-            success.classList.add("is-visible");
-          }
+      var formData = new FormData(form);
+      formData.append("page_url", window.location.href);
+      formData.append("date", new Date().toISOString());
+
+      fetch(FORM_ENDPOINT, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" }
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error("Form submit failed");
+          // Успех показываем только после реального успешного ответа.
+          showSuccess(form);
           form.reset();
         })
-        .catch(function () {
-          showMessengerFallback(form, data);
+        .catch(function (error) {
+          console.error(error);
+          showFallback(form);
         })
         .finally(function () {
           button.disabled = false;
