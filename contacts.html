@@ -33,7 +33,7 @@
         <a href="media.html">Медиа</a>
         <a href="razbor.html">Диагностика</a>
       </nav>
-      <a class="btn btn--primary btn--sm header-cta" href="razbor.html">Пройти диагностику</a>
+      <a class="btn btn--primary btn--sm header-cta" href="razbor.html#diagnostics-form">Пройти диагностику</a>
       <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -82,44 +82,17 @@
               <a href="https://insarvv.mave.digital" target="_blank" rel="noopener noreferrer" class="social-link" data-link="podcasts">Подкасты</a>
             </div>
           </div>
-          <div class="form-card reveal">
-            <h3 class="h3" style="margin-bottom: 8px;">Оставить заявку</h3>
-            <p class="text-muted" style="margin-bottom: 28px; font-size: 0.95rem;">Заполните форму — свяжемся с вами в ближайшее время.</p>
-            <form id="contact-form" data-lead-form novalidate>
-              <input type="hidden" name="_subject" value="Новая заявка на диагностику #БольшеСвободы">
-              <input type="hidden" name="source" value="site">
-              <input type="hidden" name="form_name" value="contacts">
-              <input type="hidden" name="Источник" value="Страница «Контакты»">
-              <div class="form-grid">
-                <div class="form-field">
-                  <label for="c-name">Имя</label>
-                  <input id="c-name" name="Имя" type="text" autocomplete="name" required placeholder="Как к вам обращаться">
-                </div>
-                <div class="form-field">
-                  <label for="c-phone">Телефон</label>
-                  <input id="c-phone" name="Телефон" type="tel" autocomplete="tel" required placeholder="+7 ___ ___-__-__">
-                </div>
-                <div class="form-field">
-                  <label for="c-telegram">Telegram</label>
-                  <input id="c-telegram" name="Telegram" type="text" placeholder="@username">
-                </div>
-                <div class="form-field">
-                  <label for="c-message">Вопрос или комментарий</label>
-                  <textarea id="c-message" name="Сообщение" placeholder="Коротко опишите ваш вопрос"></textarea>
-                </div>
-                <label class="form-consent"><input type="checkbox" name="Согласие" value="да" required> Я согласен на <a href="privacy.html" target="_blank" rel="noopener noreferrer">обработку персональных данных</a></label>
-                <button class="btn btn--primary" type="submit">Оставить заявку</button>
-              </div>
-            </form>
-            <div class="form-success" data-for="contact-form">
-              <h3 class="h3">Заявка отправлена</h3>
-              <p class="text-muted">Мы свяжемся с вами в ближайшее время.</p>
+          <div class="reveal" id="diagnostics-form">
+            <h3 class="h3" style="margin-bottom: 8px;">Оставить заявку на диагностику</h3>
+            <p class="text-muted" style="margin-bottom: 20px; font-size: 0.95rem;">Заполните форму — мы свяжемся с вами и согласуем время диагностики.</p>
+            <div class="yandex-form-card">
+              <iframe
+                src="https://forms.yandex.ru/u/6a36a2ab49af472e2b887cac?iframe=1"
+                name="ya-form-6a36a2ab49af472e2b887cac"
+                title="Заявка на входную диагностику #БольшеСвободы"
+                loading="lazy"></iframe>
             </div>
-            <p class="form-direct">Хотите быстрее? Напишите напрямую:
-              <a href="https://t.me/insarvv" target="_blank" rel="noopener noreferrer" data-link="telegram">Telegram</a> ·
-              <a href="https://max.ru/u/f9LHodD0cOLXlqqMMV2QEksQl3IrJzbLzjym4IakASSlugYFsClU-83fF_k" target="_blank" rel="noopener noreferrer" data-link="max">MAX</a> ·
-              <a href="mailto:bolshedeneg1@mail.ru">Email</a>
-            </p>
+            <p class="form-policy-note">Нажимая кнопку отправки в форме, вы соглашаетесь на <a href="privacy.html" target="_blank" rel="noopener noreferrer">обработку персональных данных</a>.</p>
           </div>
         </div>
       </div>
@@ -131,7 +104,7 @@
           <h2 class="h2">Не знаете, с чего начать?</h2>
           <p>Начните с входной диагностики предпринимателя и бизнеса — это первый шаг в школу.</p>
           <div class="btn-row">
-            <a class="btn btn--primary" href="razbor.html">Пройти диагностику</a>
+            <a class="btn btn--primary" href="razbor.html#diagnostics-form">Пройти диагностику</a>
           </div>
         </div>
       </div>
@@ -195,6 +168,7 @@
     </div>
   </footer>
 
+  <script src="https://forms.yandex.ru/_static/embed.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

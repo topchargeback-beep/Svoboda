@@ -33,7 +33,7 @@
         <a href="media.html">Медиа</a>
         <a href="razbor.html">Диагностика</a>
       </nav>
-      <a class="btn btn--primary btn--sm header-cta" href="#form">Пройти диагностику</a>
+      <a class="btn btn--primary btn--sm header-cta" href="#diagnostics-form">Пройти диагностику</a>
       <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -51,7 +51,7 @@
             <h1 class="display">Входная диагностика предпринимателя и&nbsp;бизнеса</h1>
             <p class="lead">За 60–90 минут определим, какой навык предпринимателя сейчас ограничивает рост бизнеса и что нужно внедрить в ближайшие 90 дней.</p>
             <div class="btn-row" style="margin-top: 40px;">
-              <a class="btn btn--primary" href="#form">Оставить заявку</a>
+              <a class="btn btn--primary" href="#diagnostics-form">Оставить заявку</a>
             </div>
           </div>
           <div class="hero-visual reveal">
@@ -222,14 +222,14 @@
       </div>
     </section>
 
-    <!-- ======================= Форма заявки ======================= -->
-    <section class="section section--paper" id="form">
+    <!-- ======================= Форма заявки (Яндекс Форма) ======================= -->
+    <section class="section section--paper diagnostics-form-section" id="diagnostics-form">
       <div class="container">
-        <div class="split">
-          <div class="reveal">
-            <span class="eyebrow">Заявка</span>
-            <h2 class="h2" style="margin-bottom: 20px;">Записаться на&nbsp;диагностику</h2>
-            <p class="text-muted" style="max-width: 420px;">Заполните форму — мы свяжемся с вами, зададим несколько уточняющих вопросов и согласуем время диагностики.</p>
+        <div class="form-layout">
+          <div class="form-copy reveal">
+            <span class="eyebrow">Входная диагностика</span>
+            <h2 class="h2" style="margin-bottom: 20px;">Оставить заявку на&nbsp;диагностику</h2>
+            <p class="text-muted" style="max-width: 420px;">Заполните форму — мы свяжемся с вами и согласуем время диагностики.</p>
             <figure class="founder-photo reveal" style="max-width: 360px; aspect-ratio: 4 / 3; margin-top: 36px;">
               <img src="assets/env/env-razbor.jpg" alt="Инсар Валиахметов на разборе бизнеса предпринимателя" loading="lazy">
               <figcaption>
@@ -237,63 +237,27 @@
                 <span>Основатель школы #БольшеСвободы</span>
               </figcaption>
             </figure>
-          </div>
-          <div class="form-card reveal">
-            <form id="razbor-form" data-lead-form novalidate>
-              <input type="hidden" name="_subject" value="Новая заявка на диагностику #БольшеСвободы">
-              <input type="hidden" name="source" value="site">
-              <input type="hidden" name="form_name" value="diagnostics">
-              <input type="hidden" name="Источник" value="Страница «Входная диагностика предпринимателя и бизнеса»">
-              <div class="form-grid">
-                <div class="form-field">
-                  <label for="f-name">Имя</label>
-                  <input id="f-name" name="Имя" type="text" autocomplete="name" required placeholder="Как к вам обращаться">
-                </div>
-                <div class="form-field">
-                  <label for="f-phone">Телефон</label>
-                  <input id="f-phone" name="Телефон" type="tel" autocomplete="tel" required placeholder="+7 ___ ___-__-__">
-                </div>
-                <div class="form-field">
-                  <label for="f-telegram">Telegram</label>
-                  <input id="f-telegram" name="Telegram" type="text" placeholder="@username">
-                </div>
-                <div class="form-field">
-                  <label for="f-sphere">Сфера бизнеса</label>
-                  <input id="f-sphere" name="Сфера бизнеса" type="text" required placeholder="Например: производство, услуги, опт">
-                </div>
-                <div class="form-field">
-                  <label for="f-revenue">Выручка в месяц</label>
-                  <select id="f-revenue" name="Выручка в месяц" required>
-                    <option value="" selected disabled>Выберите диапазон</option>
-                    <option>До 500 тыс. ₽</option>
-                    <option>500 тыс. — 1 млн ₽</option>
-                    <option>1 — 3 млн ₽</option>
-                    <option>3 — 10 млн ₽</option>
-                    <option>10 — 30 млн ₽</option>
-                    <option>Более 30 млн ₽</option>
-                  </select>
-                </div>
-                <div class="form-field">
-                  <label for="f-problem">Главная проблема сейчас</label>
-                  <textarea id="f-problem" name="Главная проблема" required placeholder="Коротко опишите, что сейчас мешает расти"></textarea>
-                </div>
-                <label class="form-consent"><input type="checkbox" name="Согласие" value="да" required> Я согласен на <a href="privacy.html" target="_blank" rel="noopener noreferrer">обработку персональных данных</a></label>
-                <button class="btn btn--primary" type="submit">Пройти входную диагностику</button>
-              </div>
-            </form>
-            <div class="form-success" data-for="razbor-form">
-              <h3 class="h3">Заявка отправлена</h3>
-              <p class="text-muted">Мы свяжемся с вами в ближайшее время, чтобы согласовать время диагностики.</p>
-            </div>
             <p class="form-direct">Хотите быстрее? Напишите напрямую:
               <a href="https://t.me/insarvv" target="_blank" rel="noopener noreferrer" data-link="telegram">Telegram</a> ·
               <a href="https://max.ru/u/f9LHodD0cOLXlqqMMV2QEksQl3IrJzbLzjym4IakASSlugYFsClU-83fF_k" target="_blank" rel="noopener noreferrer" data-link="max">MAX</a> ·
               <a href="mailto:bolshedeneg1@mail.ru">Email</a>
             </p>
           </div>
+          <div class="reveal">
+            <div class="yandex-form-card">
+              <iframe
+                src="https://forms.yandex.ru/u/6a36a2ab49af472e2b887cac?iframe=1"
+                name="ya-form-6a36a2ab49af472e2b887cac"
+                title="Заявка на входную диагностику #БольшеСвободы"
+                loading="lazy"></iframe>
+            </div>
+            <p class="form-policy-note">Нажимая кнопку отправки в форме, вы соглашаетесь на <a href="privacy.html" target="_blank" rel="noopener noreferrer">обработку персональных данных</a>.</p>
+          </div>
         </div>
       </div>
     </section>
+    <script src="https://forms.yandex.ru/_static/embed.js"></script>
+
 
   </main>
 
