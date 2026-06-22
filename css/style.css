@@ -1660,6 +1660,30 @@ form.is-hidden {
   max-width: 560px;
 }
 
+/* Доказательная полоса (компактные метрики) */
+.proof-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(10px, 1.4vw, 16px);
+  margin-top: clamp(28px, 4vw, 40px);
+}
+.proof-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 18px 12px;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+.proof-pill .proof-val { font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 800; color: var(--color-blue); }
+.proof-pill .proof-name { font-size: 0.82rem; color: var(--color-graphite); line-height: 1.25; }
+@media (max-width: 760px) { .proof-strip { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 420px) { .proof-strip { grid-template-columns: repeat(2, 1fr); } }
+
 /* Карточки форматов медиа */
 .format-grid {
   display: grid;
@@ -4929,6 +4953,7 @@ main .section-head--center::before {
   align-items: center;
 }
 .hero-inner--split > div:first-child { max-width: 640px; }
+.hero-inner--split .display { font-size: clamp(2.1rem, 3.6vw, 3.25rem); line-height: 1.06; overflow-wrap: break-word; }
 .hero-inner--split .hero-text { margin-bottom: 0; }
 @media (max-width: 880px) {
   .hero-inner--split { grid-template-columns: 1fr; }
