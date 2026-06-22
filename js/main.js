@@ -394,3 +394,15 @@
   if (acceptBtn) acceptBtn.addEventListener("click", function () { save("all"); loadYandexMetrica(); });
   if (necessaryBtn) necessaryBtn.addEventListener("click", function () { save("necessary"); });
 })();
+
+/* Кнопка «Назад» на юридических страницах: история назад или на главную. */
+(function () {
+  document.querySelectorAll("[data-go-back]").forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      if (window.history.length > 1) {
+        e.preventDefault();
+        window.history.back();
+      }
+    });
+  });
+})();
