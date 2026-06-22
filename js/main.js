@@ -344,3 +344,47 @@
     if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
   });
 })();
+
+/* ============================================================
+   Cookie-баннер и согласие на аналитику.
+   Необходимые cookie работают всегда. Аналитика (Яндекс Метрика)
+   подключается ТОЛЬКО после «Принять все».
+   ============================================================ */
+(function () {
+  // TODO: вставить ID счётчика Яндекс Метрики, когда он появится.
+  var YM_COUNTER_ID = "";
+
+  function loadYandexMetrica() {
+    if (!YM_COUNTER_ID || window.__ymLoaded) return;
+    window.__ymLoaded = true;
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+      m[i].l = 1 * new Date();
+      k = e.createElement(t); a = e.getElementsByTagName(t)[0];
+      k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
+    })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    window.ym(YM_COUNTER_ID, "init", {
+      clickmap: true, trackLinks: true, accurateTrackBounce: true
+    });
+  }
+
+  var banner = document.getElementById("cookie-banner");
+  var consent = null;
+  try { consent = localStorage.getItem("cookieConsent"); } catch (e) {}
+
+  if (consent === "all") {
+    loadYandexMetrica();
+  } else if (!consent && banner) {
+    banner.classList.add("is-visible");
+  }
+
+  function save(value) {
+    try { localStorage.setItem("cookieConsent", value); } catch (e) {}
+    if (banner) banner.classList.remove("is-visible");
+  }
+
+  var acceptBtn = document.querySelector("[data-cookie-accept]");
+  var necessaryBtn = document.querySelector("[data-cookie-necessary]");
+  if (acceptBtn) acceptBtn.addEventListener("click", function () { save("all"); loadYandexMetrica(); });
+  if (necessaryBtn) necessaryBtn.addEventListener("click", function () { save("necessary"); });
+})();
