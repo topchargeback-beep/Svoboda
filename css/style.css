@@ -1720,6 +1720,37 @@ form.is-hidden {
 .legal-card p { margin: 0 0 6px; }
 .legal-card p:last-child { margin: 0; }
 
+/* Страница благодарности */
+.thanks-hero {
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 160px);
+  background: var(--color-paper);
+}
+.thanks-card {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-xl);
+  padding: clamp(36px, 6vw, 64px) clamp(24px, 5vw, 56px);
+  box-shadow: 0 24px 80px rgba(11, 29, 58, 0.12);
+}
+.thanks-icon {
+  width: 72px; height: 72px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  background: rgba(29, 78, 216, 0.1);
+  color: var(--color-blue);
+  display: flex; align-items: center; justify-content: center;
+}
+.thanks-icon svg { width: 36px; height: 36px; }
+.thanks-card h1 { margin: 10px 0 16px; }
+.thanks-card p { color: var(--color-graphite); line-height: 1.6; max-width: 460px; margin: 0 auto; }
+.thanks-card .thanks-fast { margin-top: 14px; color: var(--color-muted); font-size: 0.95rem; }
+.thanks-card .btn-row { justify-content: center; margin-top: 32px; }
+
 .form-direct {
   margin-top: 18px;
   padding-top: 16px;

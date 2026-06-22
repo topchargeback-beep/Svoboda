@@ -13,6 +13,10 @@
 
   var SITE_LINKS = {
     telegram: "https://t.me/insarvv",
+    // Личный Telegram для связи/заявки и канал — пока один адрес, но
+    // роли разделены: «personal» рядом с формами, «channel» в соцсетях.
+    "telegram-personal": "https://t.me/insarvv",
+    "telegram-channel": "https://t.me/insarvv",
     youtube: "https://youtube.com/@insarvv?si=BdbhREGSnbVIb4fU",
     vk: "https://vk.com/bolshe__deneg",
     instagram: "https://www.instagram.com/vvinsar?igsh=NjdnZmdyaWVhaTMz&utm_source=qr",
@@ -24,6 +28,8 @@
 
   var LINK_LABELS = {
     telegram: "Telegram-канал #БольшеСвободы",
+    "telegram-personal": "Написать в Telegram",
+    "telegram-channel": "Telegram-канал #БольшеСвободы",
     youtube: "YouTube-канал #БольшеСвободы",
     vk: "Сообщество ВКонтакте #БольшеСвободы",
     instagram: "Instagram #БольшеСвободы",
