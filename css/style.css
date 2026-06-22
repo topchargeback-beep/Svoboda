@@ -1708,6 +1708,17 @@ form.is-hidden {
 .prose h2:first-child { margin-top: 0; }
 .prose p { color: var(--color-graphite); line-height: 1.7; margin-bottom: 8px; }
 .prose a { color: var(--color-blue); text-decoration: underline; }
+.prose ul { margin: 0 0 14px; padding-left: 22px; color: var(--color-graphite); line-height: 1.7; }
+.prose li { margin-bottom: 6px; }
+.legal-card {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  margin: 0 0 24px;
+}
+.legal-card p { margin: 0 0 6px; }
+.legal-card p:last-child { margin: 0; }
 
 .form-direct {
   margin-top: 18px;
