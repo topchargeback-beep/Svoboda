@@ -284,3 +284,63 @@
     });
   });
 })();
+
+/* ============================================================
+   Модальное окно заявки с Яндекс Формой.
+   Кнопки [data-open-diagnostics-modal] открывают модалку прямо
+   на текущей странице. Без JS работает fallback href на
+   razbor.html#diagnostics-form. Iframe грузится лениво при
+   первом открытии и не пересоздаётся, чтобы не терять введённые
+   данные.
+   ============================================================ */
+(function () {
+  var modal = document.getElementById("diagnostics-modal");
+  if (!modal) return;
+
+  var FORM_SRC = "https://forms.yandex.ru/u/6a36a2ab49af472e2b887cac?iframe=1";
+  var lastFocus = null;
+
+  function ensureIframe() {
+    var c = modal.querySelector("[data-diagnostics-iframe-container]");
+    if (!c || c.dataset.loaded === "true") return;
+    var ifr = document.createElement("iframe");
+    ifr.src = FORM_SRC;
+    ifr.setAttribute("frameborder", "0");
+    ifr.setAttribute("name", "ya-form-6a36a2ab49af472e2b887cac");
+    ifr.setAttribute("title", "Форма заявки на диагностику #БольшеСвободы");
+    c.appendChild(ifr);
+    c.dataset.loaded = "true";
+  }
+
+  function openModal(trigger) {
+    lastFocus = trigger || document.activeElement;
+    ensureIframe();
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("no-scroll");
+    var closeBtn = modal.querySelector(".diagnostics-modal__close");
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("no-scroll");
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.querySelectorAll("[data-open-diagnostics-modal]").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      openModal(btn);
+    });
+  });
+
+  modal.querySelectorAll("[data-modal-close]").forEach(function (el) {
+    el.addEventListener("click", closeModal);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+  });
+})();

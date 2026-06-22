@@ -1723,26 +1723,69 @@ form.is-hidden {
 }
 .form-direct a:hover { text-decoration: underline; }
 
-/* Яндекс Форма — встроенная заявка */
-.diagnostics-form-section .form-layout {
+/* Яндекс Форма — встроенная секция заявки на razbor.html */
+#diagnostics-form { scroll-margin-top: 110px; }
+
+.diagnostics-form-section {
+  background: var(--color-paper);
+}
+.diagnostics-form-layout {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: clamp(28px, 4vw, 56px);
+  grid-template-columns: minmax(0, 0.9fr) minmax(380px, 1.1fr);
+  gap: clamp(28px, 4vw, 48px);
   align-items: start;
 }
+.diagnostics-form-copy { position: sticky; top: 110px; }
+.diagnostics-form-copy h2 { margin: 10px 0 16px; }
+.diagnostics-form-copy > p { max-width: 520px; color: var(--color-graphite); line-height: 1.6; }
+.diagnostics-form-benefits { display: grid; gap: 12px; margin-top: 28px; max-width: 460px; }
+.diagnostics-form-benefits div {
+  position: relative;
+  padding: 15px 18px 15px 46px;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--color-navy);
+  font-weight: 600;
+  box-shadow: var(--shadow-card);
+}
+.diagnostics-form-benefits div::before {
+  content: "";
+  position: absolute;
+  left: 18px; top: 50%;
+  width: 16px; height: 16px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: var(--color-blue);
+  box-shadow: inset 0 0 0 4px rgba(255,255,255,0.85);
+}
+.diagnostics-trust {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+.diagnostics-trust img {
+  width: 64px; height: 64px;
+  border-radius: 16px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.diagnostics-trust strong { display: block; color: var(--color-navy); }
+.diagnostics-trust span { font-size: 0.9rem; color: var(--color-muted); }
+.diagnostics-fast-contact { margin-top: 26px; font-size: 0.95rem; color: var(--color-muted); }
+.diagnostics-fast-contact a { color: var(--color-blue); font-weight: 700; }
+
 .yandex-form-card {
   width: 100%;
-  max-width: 760px;
-  margin: 0 auto;
   padding: 24px;
-  border-radius: 28px;
+  border-radius: 32px;
   background: #ffffff;
-  box-shadow: 0 24px 80px rgba(11, 29, 58, 0.12);
+  box-shadow: 0 24px 80px rgba(11, 29, 58, 0.14);
   overflow: hidden;
 }
 .yandex-form-card iframe {
   width: 100%;
-  min-height: 760px;
+  min-height: 820px;
   border: 0;
   display: block;
 }
@@ -1751,17 +1794,88 @@ form.is-hidden {
   font-size: 0.85rem;
   color: var(--color-muted);
   text-align: center;
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
 }
 .form-policy-note a { color: var(--color-blue); text-decoration: underline; }
-@media (max-width: 920px) {
-  .diagnostics-form-section .form-layout { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  .diagnostics-form-layout { grid-template-columns: 1fr; gap: 28px; }
+  .diagnostics-form-copy { position: static; }
+  .yandex-form-card { padding: 12px; border-radius: 22px; }
+  .yandex-form-card iframe { min-height: 920px; }
 }
+
+/* ===== Модальное окно заявки (Яндекс Форма) ===== */
+body.no-scroll { overflow: hidden; }
+
+.diagnostics-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+.diagnostics-modal.is-open { display: block; }
+.diagnostics-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 29, 58, 0.72);
+  backdrop-filter: blur(8px);
+}
+.diagnostics-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 860px);
+  max-height: 90vh;
+  margin: 5vh auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 32px;
+  background: #ffffff;
+  box-shadow: 0 32px 120px rgba(11, 29, 58, 0.32);
+}
+.diagnostics-modal__close {
+  position: absolute;
+  top: 18px; right: 18px;
+  z-index: 2;
+  width: 42px; height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: #f3f7ff;
+  color: var(--color-navy);
+  font: inherit;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.diagnostics-modal__close:hover { background: var(--color-line); }
+.diagnostics-modal__header {
+  padding: 32px 36px 18px;
+  border-bottom: 1px solid rgba(11, 29, 58, 0.08);
+}
+.diagnostics-modal__header h2 { margin: 8px 0 10px; font-size: clamp(24px, 3vw, 34px); line-height: 1.1; }
+.diagnostics-modal__header p { max-width: 620px; margin: 0; color: var(--color-graphite); }
+.diagnostics-modal__form {
+  padding: 18px 28px 22px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.diagnostics-modal__form iframe { display: block; width: 100%; min-height: 760px; border: 0; }
+.diagnostics-modal__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+  padding: 16px 36px 26px;
+  border-top: 1px solid rgba(11, 29, 58, 0.08);
+  color: var(--color-muted);
+}
+.diagnostics-modal__contacts a { color: var(--color-blue); font-weight: 700; }
 @media (max-width: 768px) {
-  .yandex-form-card { padding: 12px; border-radius: 20px; }
-  .yandex-form-card iframe { min-height: 880px; }
+  .diagnostics-modal__dialog { width: 100vw; max-height: 100vh; height: 100dvh; margin: 0; border-radius: 0; }
+  .diagnostics-modal__header { padding: 24px 20px 14px; }
+  .diagnostics-modal__form { padding: 12px 12px 18px; }
+  .diagnostics-modal__form iframe { min-height: 820px; }
+  .diagnostics-modal__contacts { padding: 14px 20px 20px; }
 }
 
 .form-consent {

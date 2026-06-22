@@ -33,7 +33,7 @@
         <a href="media.html">Медиа</a>
         <a href="razbor.html">Диагностика</a>
       </nav>
-      <a class="btn btn--primary btn--sm header-cta" href="razbor.html#diagnostics-form">Пройти диагностику</a>
+      <a data-open-diagnostics-modal class="btn btn--primary btn--sm header-cta" href="razbor.html#diagnostics-form">Пройти диагностику</a>
       <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -305,7 +305,7 @@
           <h2 class="h2">Узнайте свой следующий навык</h2>
           <p>Пройдите входную диагностику предпринимателя и бизнеса — и получите персональный маршрут развития по методологии школы.</p>
           <div class="btn-row">
-            <a class="btn btn--primary" href="razbor.html#diagnostics-form">Пройти диагностику</a>
+            <a data-open-diagnostics-modal class="btn btn--primary" href="razbor.html#diagnostics-form">Пройти диагностику</a>
           </div>
         </div>
       </div>
@@ -368,6 +368,27 @@
       </div>
     </div>
   </footer>
+  <!-- Модальное окно заявки (Яндекс Форма) -->
+  <div class="diagnostics-modal" id="diagnostics-modal" aria-hidden="true">
+    <div class="diagnostics-modal__overlay" data-modal-close></div>
+    <div class="diagnostics-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="diagnostics-modal-title">
+      <button class="diagnostics-modal__close" type="button" data-modal-close aria-label="Закрыть форму">×</button>
+      <div class="diagnostics-modal__header">
+        <span class="eyebrow">Входная диагностика</span>
+        <h2 id="diagnostics-modal-title">Оставить заявку на диагностику</h2>
+        <p>Заполните форму — мы свяжемся с вами и согласуем время диагностики.</p>
+      </div>
+      <div class="diagnostics-modal__form" data-diagnostics-iframe-container></div>
+      <div class="diagnostics-modal__contacts">
+        <span>Хотите быстрее?</span>
+        <a href="https://t.me/insarvv" target="_blank" rel="noopener noreferrer" data-link="telegram">Telegram</a>
+        <a href="https://max.ru/u/f9LHodD0cOLXlqqMMV2QEksQl3IrJzbLzjym4IakASSlugYFsClU-83fF_k" target="_blank" rel="noopener noreferrer" data-link="max">MAX</a>
+        <a href="mailto:bolshedeneg1@mail.ru">Email</a>
+      </div>
+    </div>
+  </div>
+  <script src="https://forms.yandex.ru/_static/embed.js"></script>
+
 
   <script src="js/main.js"></script>
 </body>
