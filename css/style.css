@@ -1458,6 +1458,18 @@ select {
   min-width: 0;
 }
 
+.key-callout {
+  margin: 0;
+  padding: 18px 22px;
+  border-left: 4px solid var(--color-blue);
+  background: var(--color-paper);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-weight: 700;
+  font-size: 1.08rem;
+  line-height: 1.45;
+  color: var(--color-ink);
+}
+
 .split--center {
   align-items: center;
 }
@@ -1729,6 +1741,14 @@ form.is-hidden {
 .path-stage--goal p { color: rgba(255, 255, 255, 0.9); }
 .path-route { margin: 6px 0 14px; }
 .path-route__label { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-muted-dark); margin-bottom: 8px; }
+.path-pains { margin: 4px 0 14px; }
+.path-pains ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 5px; }
+.path-pains li { position: relative; padding-left: 16px; font-size: 0.88rem; line-height: 1.4; color: rgba(255, 255, 255, 0.66); }
+.path-pains li::before { content: "–"; position: absolute; left: 0; color: var(--color-sky); }
+.path-progs { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.path-progs li { font-size: 0.9rem; line-height: 1.4; color: rgba(255, 255, 255, 0.78); }
+.path-progs strong { color: var(--color-sky); font-weight: 800; }
+.path-progs li.soon strong { color: var(--color-muted-dark); }
 .path-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .path-tag {
   font-weight: 700;
@@ -2410,7 +2430,21 @@ body.no-scroll { overflow: hidden; }
   }
 }
 
-@media (max-width: 820px) {
+/* Планшетный диапазон: полное меню + CTA + длинная подпись не помещаются —
+   прячем подпись бренда, на мобильном (бургер) она снова показывается. */
+@media (max-width: 1140px) and (min-width: 961px) {
+  .site-header .brand-sub {
+    display: none;
+  }
+  .header-inner {
+    gap: 20px;
+  }
+  .site-nav {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 960px) {
   .site-nav {
     position: fixed;
     inset: 76px 0 auto 0;
@@ -4223,6 +4257,10 @@ body.no-scroll { overflow: hidden; }
   padding: clamp(40px, 5vw, 64px);
 }
 
+.cta-split > * {
+  min-width: 0;
+}
+
 .cta-split-text .h2 {
   margin-bottom: 18px;
 }
@@ -4279,6 +4317,12 @@ body.no-scroll { overflow: hidden; }
   }
   .cta-split-photo {
     order: -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-split {
+    padding: 28px 22px;
   }
 }
 
@@ -4581,6 +4625,17 @@ main .section-head--center::before {
   border-color: var(--color-line);
 }
 
+.program-tagline {
+  margin: -4px 0 16px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--color-blue);
+}
+
+.program-card--next .program-tagline {
+  color: var(--color-muted);
+}
+
 .program-card .program-block h4 {
   color: var(--color-muted);
 }
@@ -4825,7 +4880,9 @@ main .section-head--center::before {
 }
 
 @media (max-width: 700px) {
-  .neq-col { width: 100%; }
+  .neq { grid-template-columns: 1fr; }
+  .neq-col { width: 100%; min-width: 0; }
+  .neq-sign, .neq .neq-arrow { transform: rotate(90deg); justify-self: center; }
 }
 
 /* Блок «Больше свободы предпринимателя» */
