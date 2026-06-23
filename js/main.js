@@ -406,3 +406,55 @@
     });
   });
 })();
+
+/* Закрытие мобильного меню по клику вне меню и по Escape. */
+(function () {
+  var nav = document.querySelector(".site-nav");
+  var toggle = document.querySelector(".nav-toggle");
+  if (!nav || !toggle) return;
+  function close() {
+    nav.classList.remove("is-open");
+    toggle.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  }
+  document.addEventListener("click", function (e) {
+    if (!nav.classList.contains("is-open")) return;
+    if (nav.contains(e.target) || toggle.contains(e.target)) return;
+    close();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") close();
+  });
+})();
+
+/* Footer-аккордеон на мобильных (прогрессивное улучшение). */
+(function () {
+  var footer = document.querySelector(".site-footer");
+  if (!footer) return;
+  var mq = window.matchMedia("(max-width: 768px)");
+  var cols = footer.querySelectorAll(".footer-col");
+  var wired = false;
+
+  function headingClick() {
+    this.parentElement.classList.toggle("is-open");
+  }
+  function enable() {
+    footer.classList.add("footer-accordion");
+    cols.forEach(function (col) {
+      var h = col.querySelector("h4");
+      if (h && !h.dataset.accordionWired) {
+        h.addEventListener("click", headingClick);
+        h.dataset.accordionWired = "1";
+      }
+    });
+    wired = true;
+  }
+  function disable() {
+    footer.classList.remove("footer-accordion");
+    cols.forEach(function (col) { col.classList.remove("is-open"); });
+  }
+  function sync() { mq.matches ? enable() : disable(); }
+  sync();
+  if (mq.addEventListener) mq.addEventListener("change", sync);
+  else if (mq.addListener) mq.addListener(sync);
+})();

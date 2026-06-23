@@ -5404,3 +5404,97 @@ main .section-head--center::before {
   .week-row { grid-template-columns: 1fr; gap: 6px; }
   .kp-path { font-size: 0.92rem; }
 }
+
+/* ============================================================
+   MOBILE PASS — отдельная мобильная композиция
+   ============================================================ */
+
+/* CTA внутри бургер-меню (на десктопе скрыта) */
+.site-nav__cta { display: none; }
+@media (max-width: 960px) {
+  .site-nav .site-nav__cta {
+    display: block;
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: var(--color-blue);
+    color: #fff;
+    text-align: center;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    border-bottom: none;
+  }
+  .site-nav .site-nav__cta:hover { color: #fff; }
+  /* В вертикальном drawer не рисуем подчёркивание активного пункта */
+  .site-nav a.is-active::after { display: none; }
+}
+
+/* Tap targets — удобные размеры для пальца */
+@media (max-width: 768px) {
+  .btn { min-height: 50px; }
+  .btn--sm { min-height: 44px; }
+  .nav-toggle { width: 44px; height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+  .diagnostics-modal__close { width: 44px; height: 44px; font-size: 28px; }
+  .social-link { min-height: 44px; display: inline-flex; align-items: center; }
+  .footer-col a, .footer-docs a, .footer-contacts a { display: inline-flex; align-items: center; min-height: 40px; }
+  .cookie-banner__actions .btn { min-height: 48px; }
+  /* Кнопки в hero и ключевых CTA — на всю ширину */
+  .hero-split-text .btn-row .btn,
+  .pain-cta .btn,
+  .chain-more .btn,
+  .cta-banner .btn-row .btn,
+  .cta-split .btn,
+  .program-card .btn-row .btn { width: 100%; }
+  .hero-split-text .btn-row,
+  .program-card .btn-row { flex-direction: column; align-items: stretch; gap: 12px; }
+}
+
+/* Фотоколлажи -> горизонтальный свайп на узких экранах */
+@media (max-width: 600px) {
+  .hero-collage,
+  .photo-grid--collage {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 82%;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+  .hero-collage::-webkit-scrollbar,
+  .photo-grid--collage::-webkit-scrollbar { display: none; }
+  .hero-collage > *,
+  .photo-grid--collage > * { scroll-snap-align: start; }
+}
+
+/* Footer-аккордеон на mobile (прогрессивно: включается через JS-класс) */
+@media (max-width: 768px) {
+  .site-footer.footer-accordion .footer-col h4 {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-line-soft, rgba(255,255,255,0.12));
+  }
+  .site-footer.footer-accordion .footer-col h4::after {
+    content: "+";
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1;
+    opacity: 0.6;
+  }
+  .site-footer.footer-accordion .footer-col.is-open h4::after { content: "\2013"; }
+  .site-footer.footer-accordion .footer-col ul { display: none; padding-top: 6px; }
+  .site-footer.footer-accordion .footer-col.is-open ul { display: block; }
+}
+
+/* Mobile типографика — страховка от слишком крупных/мелких заголовков */
+@media (max-width: 768px) {
+  .h2 { line-height: 1.1; }
+  .h3 { line-height: 1.2; }
+  .lead { font-size: 1.05rem; line-height: 1.5; }
+}
