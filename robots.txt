@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://topchargeback-beep.github.io/Svoboda/sitemap.xml
+Sitemap: https://bolshesvobody.ru/sitemap.xml
