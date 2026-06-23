@@ -320,6 +320,7 @@ select {
   font-weight: 500;
   color: var(--color-muted);
   transition: color var(--transition);
+  white-space: nowrap;
 }
 
 .site-nav a:hover,
