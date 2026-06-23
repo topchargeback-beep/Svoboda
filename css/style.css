@@ -59,6 +59,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -1470,6 +1471,32 @@ select {
   color: var(--color-ink);
 }
 
+.freedom-summary {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+  background: linear-gradient(160deg, var(--color-blue), #1737a8);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: clamp(28px, 4vw, 44px) clamp(24px, 4vw, 56px);
+}
+.freedom-summary__label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 12px;
+}
+.freedom-summary__text {
+  margin: 0;
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.4;
+}
+.freedom-summary__text strong { color: var(--color-sky); }
+
 .split--center {
   align-items: center;
 }
@@ -1679,17 +1706,18 @@ form.is-hidden {
 /* Цепочка «инструмент → внедрение → навык → изменение» */
 .chain-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: clamp(12px, 1.4vw, 16px);
+  grid-template-columns: 1fr;
+  gap: 14px;
 }
 .chain-card {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: 210px 1fr 1fr 1fr;
+  gap: clamp(16px, 2vw, 28px);
+  align-items: start;
   background: #fff;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
-  padding: 18px 16px;
+  padding: 22px 26px;
   box-shadow: var(--shadow-card);
 }
 .chain-label {
@@ -1699,19 +1727,39 @@ form.is-hidden {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-muted);
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 .chain-tool {
-  font-size: 1.05rem;
+  font-size: 1.12rem;
   font-weight: 800;
   color: var(--color-navy);
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--color-line);
+  align-self: center;
+  padding-right: clamp(16px, 2vw, 28px);
+  border-right: 1px solid var(--color-line);
 }
-.chain-step p { font-size: 0.9rem; color: var(--color-graphite); line-height: 1.45; margin: 0; }
-.chain-step:nth-of-type(3) p { color: var(--color-blue); font-weight: 600; }
-@media (max-width: 1024px) { .chain-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .chain-grid { grid-template-columns: 1fr; } }
+.chain-step p { font-size: 0.92rem; color: var(--color-graphite); line-height: 1.45; margin: 0; }
+.chain-step:last-child { border-radius: 10px; }
+.chain-step:last-child p { color: var(--color-blue); font-weight: 600; }
+@media (max-width: 860px) {
+  .chain-card { grid-template-columns: 1fr 1fr; gap: 18px; }
+  .chain-tool { grid-column: 1 / -1; border-right: 0; border-bottom: 1px solid var(--color-line); padding: 0 0 12px; }
+}
+@media (max-width: 560px) {
+  .chain-card { grid-template-columns: 1fr; gap: 14px; }
+}
+.chain-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+  text-align: center;
+}
+.chain-note {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
 
 /* Путь предпринимателя: этапы + маршруты к программам */
 .path-stages {
@@ -1749,6 +1797,9 @@ form.is-hidden {
 .path-progs li { font-size: 0.9rem; line-height: 1.4; color: rgba(255, 255, 255, 0.78); }
 .path-progs strong { color: var(--color-sky); font-weight: 800; }
 .path-progs li.soon strong { color: var(--color-muted-dark); }
+.path-def { color: #fff; font-weight: 700; font-size: 1.05rem; line-height: 1.35; margin-bottom: 8px; }
+.path-problem { color: rgba(255, 255, 255, 0.7); line-height: 1.5; font-size: 0.95rem; margin-bottom: 16px; }
+.path-skills { color: var(--color-sky); font-weight: 700; font-size: 0.9rem; margin: 0 0 12px; }
 .path-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .path-tag {
   font-weight: 700;
@@ -1937,9 +1988,13 @@ form.is-hidden {
 }
 .form-direct a:hover { text-decoration: underline; }
 
-/* Яндекс Форма — встроенная секция заявки на razbor.html */
-#diagnostics-form { scroll-margin-top: 110px; }
-#cases, #programs, #methodology, #how, #testimonials, #media, #history { scroll-margin-top: 96px; }
+/* Sticky-header не должен перекрывать секции при переходе по якорям */
+[id] { scroll-margin-top: 110px; }
+.section[id],
+#cases, #diagnostics-form, #programs, #methodology, #how, #pain, #skills,
+#bolshedeneg, #bolshevremeni { scroll-margin-top: 120px; }
+
+.text-nowrap { white-space: nowrap; }
 
 .diagnostics-form-section {
   background: var(--color-paper);
