@@ -440,13 +440,18 @@
   }
   function enable() {
     footer.classList.add("footer-accordion");
-    cols.forEach(function (col) {
+    cols.forEach(function (col, i) {
       var h = col.querySelector("h4");
       if (h && !h.dataset.accordionWired) {
         h.addEventListener("click", headingClick);
         h.dataset.accordionWired = "1";
       }
     });
+    // Первая группа раскрыта по умолчанию, остальные свёрнуты
+    if (cols.length && !footer.dataset.accordionInit) {
+      cols[0].classList.add("is-open");
+      footer.dataset.accordionInit = "1";
+    }
     wired = true;
   }
   function disable() {
