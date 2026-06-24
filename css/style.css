@@ -4074,6 +4074,8 @@ body.no-scroll { overflow: hidden; }
   margin-right: auto;
   max-width: 720px;
 }
+/* В центрированных витринных секциях CTA под заголовком тоже по центру */
+.section-head--center ~ .btn-row { justify-content: center; }
 
 /* Карточная сетка под центрированным заголовком (razbor: для кого / кому не подходит) */
 .check-grid {
