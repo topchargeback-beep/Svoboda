@@ -33,6 +33,7 @@
     Roboto, "Helvetica Neue", Arial, sans-serif;
 
   --container: 1180px;
+  --header-height: 76px;
   --radius: 16px;
   --radius-sm: 10px;
   --radius-md: 16px;
@@ -4536,7 +4537,8 @@ main .section-head--center::before {
 .hero--split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: min(78vh, 720px);
+  min-height: calc(100svh - var(--header-height));
+  max-height: 860px;
   background: var(--color-ink);
   padding: 0;
 }
@@ -4545,7 +4547,7 @@ main .section-head--center::before {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(40px, 7vw, 110px) clamp(28px, 5vw, 80px);
+  padding: clamp(28px, 4vh, 60px) clamp(28px, 5vw, 80px);
   color: #fff;
   min-width: 0;
 }
@@ -4570,10 +4572,24 @@ main .section-head--center::before {
 }
 
 .hero--split .hero-text {
-  margin-top: 26px;
-  max-width: 460px;
+  margin-top: 18px;
+  max-width: 480px;
   color: rgba(255, 255, 255, 0.6);
   font-size: 1.05rem;
+}
+
+.hero--split .btn-row {
+  margin-top: clamp(22px, 3vh, 32px);
+}
+
+/* Короткие ноутбуки: ужимаем hero, чтобы CTA были в первом экране */
+@media (min-width: 1024px) and (max-height: 820px) {
+  .hero--split .hero-split-text { padding-top: clamp(16px, 2.4vh, 32px); padding-bottom: clamp(16px, 2.4vh, 32px); }
+  .hero-headline .hl-1 { font-size: clamp(2.1rem, 3.7vw, 3.3rem); }
+  .hero-headline .hl-2 { font-size: clamp(1.5rem, 2.8vw, 2.4rem); }
+  .hero-headline .hl-3 { font-size: clamp(1.1rem, 1.9vw, 1.5rem); }
+  .hero--split .hero-text { margin-top: 12px; font-size: 0.98rem; }
+  .hero--split .btn-row { margin-top: 18px; }
 }
 
 .hero-pills {
@@ -4617,6 +4633,7 @@ main .section-head--center::before {
   .hero--split {
     grid-template-columns: 1fr;
     min-height: auto;
+    max-height: none;
   }
   .hero--split .hero-split-text {
     order: 1;
