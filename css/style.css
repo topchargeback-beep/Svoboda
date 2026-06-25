@@ -4462,6 +4462,12 @@ body.no-scroll { overflow: hidden; }
   .cta-split {
     padding: 28px 22px;
   }
+  /* Длинные подписи кнопок переносятся, а не выходят за экран */
+  .btn {
+    white-space: normal;
+    text-align: center;
+    max-width: 100%;
+  }
 }
 
 /* ============================================================
@@ -5620,4 +5626,11 @@ main .section-head--center::before {
 @media (max-width: 560px) {
   .afterflow { grid-template-columns: 1fr; }
   .afterflow-arrow { display: block; transform: rotate(90deg); justify-self: center; margin: -2px 0; }
+}
+
+/* Очень узкие экраны: бренд в заголовке героя не выходит за край */
+@media (max-width: 380px) {
+  .hero-headline .hl-1 {
+    font-size: clamp(1.9rem, 8vw, 2.4rem);
+  }
 }
